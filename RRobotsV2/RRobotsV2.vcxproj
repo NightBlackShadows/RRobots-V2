@@ -122,7 +122,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="board.cpp" />
+    <ClCompile Include="character.cpp" />
+    <ClCompile Include="ColorType.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="marker.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="options.cpp" />
+    <ClCompile Include="TileType.cpp" />
+    <ClCompile Include="WayType.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="board.h" />
+    <ClInclude Include="character.h" />
+    <ClInclude Include="ColorType.h" />
+    <ClInclude Include="entity.h" />
+    <ClInclude Include="marker.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="options.h" />
+    <ClInclude Include="TileType.h" />
+    <ClInclude Include="WayType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

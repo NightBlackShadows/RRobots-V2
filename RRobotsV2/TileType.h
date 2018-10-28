@@ -1,0 +1,6 @@
+#pragma once
+enum class TileType
+{
+	EMPTY, BOTTOMLEFT, BOTTOMRIGHT, TOPLEFT, TOPRIGHT, LEFT, RIGHT, UP, DOWN, BRICK
+};
+

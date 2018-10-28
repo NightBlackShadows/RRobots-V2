@@ -1,8 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 configuration: Debug
-init:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 before_build:
     # Print Powershell version.  
     - ps: $PSVersionTable.PSVersion  
@@ -25,3 +24,6 @@ before_build:
 build:
   project: RRobotsV2/RRobotsV2.sln
   verbosity: minimal
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

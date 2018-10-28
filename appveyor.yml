@@ -1,36 +1,40 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 configuration: Debug
+
+install:
+  # Print Powershell version.
+  - ps: $PSVersionTable.PSVersion
+  - ps: pwd  
+  # Install SDL2.
+  - ps: Start-FileDownload https://www.libsdl.org/release/SDL2-devel-2.0.8-VC.zip -FileName sdl2.zip
+  - ps: Expand-Archive sdl2.zip -DestinationPath C:\lib\
+  - set LIB=%LIB%;C:\lib\sdl2\SDL2-2.0.8\lib\x86
+  
+  # Install SDL2_Image.
+  - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.3-VC.zip -FileName sdl2_image.zip
+  - ps: Expand-Archive sdl2_image.zip -DestinationPath C:\lib\
+  - set LIB=%LIB%;C:\lib\SDL2_image-2.0.3\lib\x86
+  - ps: Get-ChildItem -Recurse -Depth 4
+
+  # Install SDL2_Mixer.
+  - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-devel-2.0.2-VC.zip -FileName sdl2_mixer.zip
+  - ps: Expand-Archive sdl2_mixer.zip -DestinationPath C:\lib\
+  - set LIB=%LIB%;C:\lib\SDL2_mixer-2.0.2\lib\x86
+  - ps: Get-ChildItem -Recurse -Depth 4
+  
+  # Install SDL2_net.
+  - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_net/release/SDL2_net-devel-2.0.1-VC.zip -FileName sdl2_mixer.zip
+  - ps: Expand-Archive sdl2_net.zip -DestinationPath C:\lib\
+  - set LIB=%LIB%;C:\lib\SDL2_net-2.0.1\lib\x86
+  - ps: Get-ChildItem -Recurse -Depth 4
+  
+  # Install SDL2_TTF.
+  - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.14-VC.zip -FileName sdl2_ttf.zip
+  - ps: Expand-Archive sdl2_ttf.zip -DestinationPath C:\lib\
+  - set LIB=%LIB%;C:\lib\SDL2_ttf-2.0.14\lib\x86
+  - ps: Get-ChildItem -Recurse -Depth 4
+  
 build:
   project: RRobotsV2/RRobotsV2.sln
   verbosity: minimal
-
-  # Install SDL2.
-  ps: Start-FileDownload https://www.libsdl.org/release/SDL2-devel-2.0.8-VC.zip -FileName sdl2.zip
-  ps: Expand-Archive sdl2.zip -DestinationPath C:\lib\
-  set LIB=%LIB%;C:\lib\sdl2\SDL2-2.0.8\lib\x86
-  
-  # Install SDL2_Image.
-  ps: Start-FileDownload https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.3-VC.zip -FileName sdl2_image.zip
-  ps: Expand-Archive sdl2_image.zip -DestinationPath C:\lib\
-  set LIB=%LIB%;C:\lib\SDL2_image-2.0.3\lib\x86
-  ps: Get-ChildItem -Recurse -Depth 4
-
-  # Install SDL2_Mixer.
-  ps: Start-FileDownload https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-devel-2.0.2-VC.zip -FileName sdl2_mixer.zip
-  ps: Expand-Archive sdl2_mixer.zip -DestinationPath C:\lib\
-  set LIB=%LIB%;C:\lib\SDL2_mixer-2.0.2\lib\x86
-  ps: Get-ChildItem -Recurse -Depth 4
-  
-  # Install SDL2_net.
-  ps: Start-FileDownload https://www.libsdl.org/projects/SDL_net/release/SDL2_net-devel-2.0.1-VC.zip -FileName sdl2_mixer.zip
-  ps: Expand-Archive sdl2_net.zip -DestinationPath C:\lib\
-  set LIB=%LIB%;C:\lib\SDL2_net-2.0.1\lib\x86
-  ps: Get-ChildItem -Recurse -Depth 4
-  
-  # Install SDL2_TTF.
-  ps: Start-FileDownload https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.14-VC.zip -FileName sdl2_ttf.zip
-  ps: Expand-Archive sdl2_ttf.zip -DestinationPath C:\lib\
-  set LIB=%LIB%;C:\lib\SDL2_ttf-2.0.14\lib\x86
-  ps: Get-ChildItem -Recurse -Depth 4
-  

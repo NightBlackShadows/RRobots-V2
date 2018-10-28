@@ -33,3 +33,4 @@ build:
   ps: Expand-Archive sdl2_ttf.zip -DestinationPath C:\lib\
   set LIB=%LIB%;C:\lib\SDL2_ttf-2.0.14\lib\x86
   ps: Get-ChildItem -Recurse -Depth 4
+  

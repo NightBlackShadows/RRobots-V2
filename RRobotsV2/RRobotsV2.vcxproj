@@ -122,25 +122,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="board.cpp" />
-    <ClCompile Include="character.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="ColorType.cpp" />
-    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="LoadTextures.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="marker.cpp" />
-    <ClCompile Include="menu.cpp" />
-    <ClCompile Include="options.cpp" />
+    <ClCompile Include="Marker.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="TileType.cpp" />
     <ClCompile Include="WayType.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="board.h" />
-    <ClInclude Include="character.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="ColorType.h" />
-    <ClInclude Include="entity.h" />
-    <ClInclude Include="marker.h" />
-    <ClInclude Include="menu.h" />
-    <ClInclude Include="options.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="LoadTextures.h" />
+    <ClInclude Include="Marker.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="TileType.h" />
     <ClInclude Include="WayType.h" />
   </ItemGroup>

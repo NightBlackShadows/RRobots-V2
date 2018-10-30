@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "Board.h"
-
+#include "Character.h"
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -16,9 +16,11 @@ SDL_Surface* gHelloWorld = NULL;
 
 SDL_Renderer* renderer = NULL;
 
+Board board;
+
 bool init();
-bool loadMedia();
-void draw(Board board);
+bool loadMedia(Character* drow);
+void draw(Character* drow);
 void close();
 
 
@@ -33,19 +35,17 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		Board board;
-		std::vector<std::vector<int>> gBoard;
-		std::cout << board.toString() << std::endl;
-		gBoard = board.getGameBoard();
 
-
+		Character drow("resources/Characters/drow_male2.png", 32, 48, 4, 4);
 		//Load media
-		if (!board.loadImages(renderer))
+		if (!loadMedia(&drow))
 		{
 			printf("Failed to load media!\n");
 		}
 		else
 		{
+
+
 			//Apply the image
 			//SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
 			//Update the surface
@@ -57,7 +57,6 @@ int main(int argc, char* args[]) {
 				//Handle events on queue
 				while (SDL_PollEvent(&e) != 0)
 				{
-					draw(board);
 
 					//User requests quit
 					if (e.type == SDL_QUIT)
@@ -66,10 +65,10 @@ int main(int argc, char* args[]) {
 					}
 
 				}
+				draw(&drow);
 			}
 		}
-
-		board.~Board();
+		drow.~Character();
 	}
 
 	
@@ -80,11 +79,10 @@ int main(int argc, char* args[]) {
 	return 0;
 }
 
-void draw(Board board) {
+void draw(Character* drow) {
 
 	//Vill man testa att skriva ut något på bilden så gör det här!
 
-	//Clear screen
 	//SDL_RenderClear(renderer);
 
 	//Draws the map
@@ -93,6 +91,8 @@ void draw(Board board) {
 			SDL_RenderCopy(renderer, board.getImageFromMap(x, y), NULL, board.getRectangle(x, y));
 		}
 	}
+
+	SDL_RenderCopyEx(renderer, drow->getTexture(), drow->getSpriteRect(WayType::DOWN), drow->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 
 	//Update screen
 	SDL_RenderPresent(renderer);
@@ -147,17 +147,23 @@ bool init() {
 	return true;
 }
 
-bool loadMedia() {
+bool loadMedia(Character* drow) {
 	//Loading success flag
 	bool success = true;
 
-	//Load splash image
-	gHelloWorld = IMG_Load("resources/Map/brickwall.png");
-	if (gHelloWorld == NULL)
-	{
-		printf("Unable to load image %s! SDL Error: %s\n", "resources/Map/brickwall.png", SDL_GetError());
-		success = false;
+	if (!board.loadImages(renderer)) {
+		printf("Could not load Map;");
+		return false;
 	}
+
+
+	if (!drow->loadImage(renderer)) {
+		printf("Could not load drow;");
+		return false;
+	}
+
+	drow->setNewPosition(32, 32);
+
 
 	return success;
 }
@@ -166,6 +172,8 @@ void close() {
 	//Free loaded image
 	//SDL_DestroyTexture(gTexture);
 	//gTexture = NULL;
+
+	board.~Board();
 
 	//Destroy window    
 	SDL_DestroyRenderer(renderer);

@@ -1,2 +1,5 @@
 
-RRobotsV2/.vs/RRobotsV2/v15/Browse.VC.opendb
+RRobotsV2/Debug/*
+RRobotsV2/Release/*
+RRobotsV2/.vs/*
+RRobotsV2/.vs/RRobotsV2/v15/.suo

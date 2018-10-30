@@ -1,0 +1,30 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+platform: x86
+configuration: Debug
+
+before_build:
+    # Print Powershell version.  
+    - ps: $PSVersionTable.PSVersion  
+    # Install SDL2.\n  
+    - ps: Start-FileDownload https://www.libsdl.org/release/SDL2-devel-2.0.8-VC.zip -FileName sdl2.zip
+    - ps: Expand-Archive sdl2.zip -DestinationPath C:\lib\
+    # Install SDL2_Image.\n  
+    - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.3-VC.zip -FileName sdl2_image.zip
+    - ps: Expand-Archive sdl2_image.zip -DestinationPath C:\lib\
+    # Install SDL2_Mixer.\n  
+    - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-devel-2.0.2-VC.zip -FileName sdl2_mixer.zip
+    - ps: Expand-Archive sdl2_mixer.zip -DestinationPath C:\lib\
+    # Install SDL2_net.\n  
+    - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_net/release/SDL2_net-devel-2.0.1-VC.zip -FileName sdl2_net.zip
+    - ps: Expand-Archive sdl2_net.zip -DestinationPath C:\lib\
+    # Install SDL2_TTF.\n  
+    - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.14-VC.zip -FileName sdl2_ttf.zip
+    - ps: Expand-Archive sdl2_ttf.zip -DestinationPath C:\lib\
+    - ps: ls C:\lib\SDL2-2.0.8\include\
+build:
+  project: RRobotsV2/RRobotsV2.sln
+  verbosity: minimal
+
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

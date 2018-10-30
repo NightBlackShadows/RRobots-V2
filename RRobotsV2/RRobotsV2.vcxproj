@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\lib\SDL2_ttf-2.0.14\include;C:\lib\SDL2_net-2.0.1\include;C:\lib\SDL2_mixer-2.0.2\include;C:\lib\SDL2_image-2.0.3\include;C:\lib\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\lib\SDL2_ttf-2.0.14\lib\x86;C:\lib\SDL2_net-2.0.1\lib\x86;C:\lib\SDL2_mixer-2.0.2\lib\x86;C:\lib\SDL2_image-2.0.3\lib\x86;C:\lib\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\lib\SDL2_ttf-2.0.14\include;C:\lib\SDL2_net-2.0.1\include;C:\lib\SDL2_mixer-2.0.2\include;C:\lib\SDL2_image-2.0.3\include;C:\lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\lib\SDL2_ttf-2.0.14\lib\x86;C:\lib\SDL2_net-2.0.1\lib\x86;C:\lib\SDL2_mixer-2.0.2\lib\x86;C:\lib\SDL2_image-2.0.3\lib\x86;C:\lib\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,6 +122,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="ColorType.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="LoadTextures.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Marker.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="TileType.cpp" />
+    <ClCompile Include="WayType.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="ColorType.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="LoadTextures.h" />
+    <ClInclude Include="Marker.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="TileType.h" />
+    <ClInclude Include="WayType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

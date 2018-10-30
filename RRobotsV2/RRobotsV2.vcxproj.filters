@@ -13,5 +13,84 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{f1ecb7a7-ea8b-460d-9e59-408b5e0dde9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{771dc6a7-c42e-4a56-b0c8-1e997b66ab6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus">
+      <UniqueIdentifier>{32487d32-ac09-4e35-9a72-1452237cf185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus">
+      <UniqueIdentifier>{e599d589-f0c1-47ef-be90-a102227ab13d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorType.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Marker.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TileType.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="WayType.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="loadTextures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorType.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Marker.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TileType.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="WayType.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="loadTextures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

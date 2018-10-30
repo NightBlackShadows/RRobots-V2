@@ -1,10 +1,10 @@
 #pragma once
-#include "entity.h"
-class marker :
-	public entity
+#include "Entity.h"
+class Marker :
+	public Entity
 {
 public:
-	marker();
-	~marker();
+	Marker(std::string filepath);
+	~Marker();
 };
 

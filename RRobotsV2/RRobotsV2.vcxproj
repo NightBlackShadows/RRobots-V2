@@ -73,6 +73,10 @@
     <IncludePath>C:\lib\SDL2_ttf-2.0.14\include;C:\lib\SDL2_net-2.0.1\include;C:\lib\SDL2_mixer-2.0.2\include;C:\lib\SDL2_image-2.0.3\include;C:\lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\lib\SDL2_ttf-2.0.14\lib\x86;C:\lib\SDL2_net-2.0.1\lib\x86;C:\lib\SDL2_mixer-2.0.2\lib\x86;C:\lib\SDL2_image-2.0.3\lib\x86;C:\lib\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\lib\SDL2_ttf-2.0.14\include;C:\lib\SDL2_net-2.0.1\include;C:\lib\SDL2_mixer-2.0.2\include;C:\lib\SDL2_image-2.0.3\include;C:\lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\lib\SDL2_ttf-2.0.14\lib\x86;C:\lib\SDL2_net-2.0.1\lib\x86;C:\lib\SDL2_mixer-2.0.2\lib\x86;C:\lib\SDL2_image-2.0.3\lib\x86;C:\lib\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -105,6 +109,8 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_net.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

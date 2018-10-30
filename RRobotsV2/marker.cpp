@@ -1,12 +1,12 @@
-#include "marker.h"
+#include "Marker.h"
 
 
 
-marker::marker()
+Marker::Marker(std::string filepath) : Entity::Entity(filepath,0,0)
 {
 }
 
 
-marker::~marker()
+Marker::~Marker()
 {
 }

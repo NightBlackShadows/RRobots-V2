@@ -21,7 +21,7 @@ before_build:
     # Install SDL2_TTF.\n  
     - ps: Start-FileDownload https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.14-VC.zip -FileName sdl2_ttf.zip
     - ps: Expand-Archive sdl2_ttf.zip -DestinationPath C:\lib\
-    - ps: ls C:\lib\SDL2-2.0.8\include\
+    #- ps: ls C:\lib\SDL2-2.0.8\include\
 build:
   project: RRobotsV2/RRobotsV2.sln
   verbosity: minimal

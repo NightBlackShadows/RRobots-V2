@@ -4,6 +4,8 @@
 #include <SDL_image.h>
 #include "Board.h"
 #include "Character.h"
+#include "Marker.h"
+#include "ColorType.h"
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -19,8 +21,8 @@ SDL_Renderer* renderer = NULL;
 Board board;
 
 bool init();
-bool loadMedia(Character* drow);
-void draw(Character* drow);
+bool loadMedia(Character* drow,Marker* marker);
+void draw(Character* drow, Marker* marker);
 void close();
 
 
@@ -37,8 +39,9 @@ int main(int argc, char* args[]) {
 	{
 
 		Character drow("resources/Characters/drow_male2.png", 32, 48, 4, 4);
+		Marker marker("resources/Marker/marker.png", 20, 20, 6);
 		//Load media
-		if (!loadMedia(&drow))
+		if (!loadMedia(&drow,&marker))
 		{
 			printf("Failed to load media!\n");
 		}
@@ -65,10 +68,11 @@ int main(int argc, char* args[]) {
 					}
 
 				}
-				draw(&drow);
+				draw(&drow,&marker);
 			}
 		}
 		drow.~Character();
+		marker.~Marker();
 	}
 
 	
@@ -79,7 +83,7 @@ int main(int argc, char* args[]) {
 	return 0;
 }
 
-void draw(Character* drow) {
+void draw(Character* drow, Marker* marker) {
 
 	//Vill man testa att skriva ut något på bilden så gör det här!
 
@@ -91,8 +95,8 @@ void draw(Character* drow) {
 			SDL_RenderCopy(renderer, board.getImageFromMap(x, y), NULL, board.getRectangle(x, y));
 		}
 	}
-
-	SDL_RenderCopyEx(renderer, drow->getTexture(), drow->getSpriteRect(WayType::DOWN), drow->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, marker->getTexture(), marker->getSpriteRect(ColorType::RED), marker->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, drow->getTexture(), drow->getSpriteRect(WayType::UP), drow->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 
 	//Update screen
 	SDL_RenderPresent(renderer);
@@ -147,7 +151,7 @@ bool init() {
 	return true;
 }
 
-bool loadMedia(Character* drow) {
+bool loadMedia(Character* drow,Marker* marker) {
 	//Loading success flag
 	bool success = true;
 
@@ -162,8 +166,13 @@ bool loadMedia(Character* drow) {
 		return false;
 	}
 
-	drow->setNewPosition(32, 32);
+	if (!marker->loadImage(renderer)) {
+		printf("Could not load marker;");
+		return false;
+	}
 
+	marker->setNewPosition(32 + (board.getRectangle(0,0)->w*0.19), 64 + (board.getRectangle(0, 0)->w*0.19)); // för att få den mitt i rutan skall den vara ca 19% in i rutan
+	drow->setNewPosition(32, 32);
 
 	return success;
 }

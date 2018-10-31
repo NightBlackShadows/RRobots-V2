@@ -42,7 +42,7 @@ SDL_Rect * Character::getSpriteRect(WayType wayType)
 {
 	switch (wayType) {
 	case WayType::DOWN:
-		if (frame < columbs) {
+		if (frame < columbs-1) {
 			frame++;
 			return &sprites[frame];
 		}
@@ -51,7 +51,7 @@ SDL_Rect * Character::getSpriteRect(WayType wayType)
 			return &sprites[frame];
 		}
 	case WayType::LEFT:
-		if (frame < columbs && frame > columbs*2) {
+		if (frame >= columbs && frame < columbs*2 - 1) {
 			frame++;
 			return &sprites[frame];
 		}
@@ -60,7 +60,7 @@ SDL_Rect * Character::getSpriteRect(WayType wayType)
 			return &sprites[frame];
 		}
 	case WayType::RIGHT:
-		if (frame < columbs*2 && frame > columbs*3) {
+		if (frame >= columbs*2 && frame < columbs*3 - 1) {
 			frame++;
 			return &sprites[frame];
 		}
@@ -69,7 +69,7 @@ SDL_Rect * Character::getSpriteRect(WayType wayType)
 			return &sprites[frame];
 		}
 	case WayType::UP:
-		if (frame < columbs*3) {
+		if (frame >= columbs*3 && frame < columbs*4-1) {
 			frame++;
 			return &sprites[frame];
 		}
@@ -98,4 +98,6 @@ void Character::resetSprite()
 
 Character::~Character()
 {
+	Entity::~Entity();
+	sprites.clear();
 }

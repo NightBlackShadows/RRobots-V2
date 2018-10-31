@@ -2,6 +2,12 @@
 
 
 
+Entity::Entity(std::string filepath)
+{
+	this->filepath = filepath;
+	this->tex = NULL;
+}
+
 Entity::Entity(std::string filepath, int width, int height)
 {
 	this->filepath = filepath;

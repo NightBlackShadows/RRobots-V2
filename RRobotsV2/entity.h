@@ -4,6 +4,7 @@
 class Entity
 {
 public:
+	Entity(std::string filepath);
 	Entity(std::string filepath, int width, int height);
 	SDL_Rect* getPositionRect();
 	SDL_Texture* getTexture();

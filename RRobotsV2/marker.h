@@ -1,10 +1,23 @@
 #pragma once
-#include "entity.h"
-class marker :
-	public entity
+#include "Entity.h"
+#include "ColorType.h"
+#include <vector>
+class Marker :
+	public Entity
 {
 public:
-	marker();
-	~marker();
+	Marker(std::string filepath);
+	Marker(std::string filepath, int widthPerSprite, int heightPerSprite, int columbs);
+
+	bool loadImage(SDL_Renderer* renderer);
+	SDL_Rect* getSpriteRect(ColorType color);
+
+	~Marker();
+
+private:
+	std::vector<SDL_Rect> sprites;
+	int widthPerSprite;
+	int heightPerSprite;
+	int columbs;
 };
 

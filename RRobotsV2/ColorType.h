@@ -1,8 +1,6 @@
 #pragma once
-class ColorType
+enum class ColorType
 {
-public:
-	ColorType();
-	~ColorType();
+	GREEN,BLUE,BLACK,RED,YELLOW,WHITE
 };
 

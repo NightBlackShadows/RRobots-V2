@@ -5,7 +5,7 @@ configuration: Debug
 
 before_build:
     # Print Powershell version.  
-    - ps: $PSVersionTable.PSVersion  
+    #- ps: $PSVersionTable.PSVersion  
     # Install SDL2.\n  
     - ps: Start-FileDownload https://www.libsdl.org/release/SDL2-devel-2.0.8-VC.zip -FileName sdl2.zip
     - ps: Expand-Archive sdl2.zip -DestinationPath C:\lib\
@@ -25,6 +25,18 @@ before_build:
 build:
   project: RRobotsV2/RRobotsV2.sln
   verbosity: minimal
-
+artifacts:
+- path: Debug\*.exe
+  name: Debug
+- path: ..\lib\SDL2_image-2.0.3\lib\x86\*.dll
+  name: Debug
+- path: ..\lib\SDL2_mixer-2.0.2\lib\x86\*.dll
+  name: Debug
+- path: ..\lib\SDL2_ttf-2.0.14\lib\x86\*.dll
+  name: Debug
+- path: ..\lib\SDL2_net-2.0.1\lib\x86\*.dll
+  name: Debug
+- path: ..\lib\SDL2-2.0.8\lib\x86\*.dll
+  name: Debug
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

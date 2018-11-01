@@ -14,13 +14,13 @@ struct tile_pos
 
 GameLogic::GameLogic()
 {
-	srand(time(NULL));
+	srand((unsigned)time(NULL));
 }
 
 void GameLogic::randomizeCharacterPos(std::vector<Character>* characters)
 {
 	int x, y;
-	for (int chars = 0; chars < characters->size(); chars++) {
+	for (int chars = 0; chars < (int)characters->size(); chars++) {
 		do
 		{
 			x = rand() % 16 + 1;
@@ -71,8 +71,8 @@ void GameLogic::randomizeMarker(std::vector<Marker>* markers)
 	entityBoard[tokenPosY][tokenPosX] = 7;
 
 	currentMarker = static_cast<ColorType>(rand() % 5);
-	for (int i = 0; i < markers->size(); i++) {
-		markers->at(i).setNewPosition(32 * tokenPosX + (32*0.19),32 * tokenPosY + (32 * 0.19));
+	for (int i = 0; i < (int)markers->size(); i++) {
+		markers->at(i).setNewPosition(32 * tokenPosX + (int)(32*0.19),32 * tokenPosY + (int)(32 * 0.19));
 	}
 }
 

@@ -26,7 +26,7 @@ bool Game::initGame(SDL_Renderer* renderer)
 	characters.push_back(Character("resources/Characters/yellow.png"));
 	markers.push_back(Marker("resources/Marker/marker.png"));
 
-	for (int i = 0; i < characters.size(); i++) {
+	for (int i = 0; i < (int)characters.size(); i++) {
 		if (characters.at(i).loadImage(renderer)) {
 			if (characters.at(i).defineImage(4, 4)) {
 				characters.at(i).setColor(i);
@@ -40,7 +40,7 @@ bool Game::initGame(SDL_Renderer* renderer)
 		}
 	}
 
-	for (int i = 0; i < markers.size(); i++) {
+	for (int i = 0; i < (int)markers.size(); i++) {
 		markers.at(i).loadImage(renderer);
 		markers.at(i).defineImage(6);
 	}
@@ -68,11 +68,11 @@ void Game::drawGame(SDL_Renderer* renderer)
 
 
 
-	for (int i = 0; i < markers.size(); i++) {
+	for (int i = 0; i < (int)markers.size(); i++) {
 		SDL_RenderCopyEx(renderer, markers.at(i).getTexture(), markers.at(i).getSpriteRect(gl.getCurrentMarker()), markers.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 	}
 //	SDL_RenderCopyEx(renderer, marker->getTexture(), marker->getSpriteRect(ColorType::RED), marker->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
-	for (int i = 0; i < characters.size(); i++) {
+	for (int i = 0; i < (int)characters.size(); i++) {
 		SDL_RenderCopyEx(renderer, characters.at(i).getTexture(), characters.at(i).getSpriteRect(WayType::NONE), characters.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 	}
 }
@@ -81,10 +81,10 @@ Game::~Game()
 {
 	board.~Board();
 	gl.~GameLogic();
-	for (int i = 0; i < characters.size(); i++) {
+	for (int i = 0; i < (int)characters.size(); i++) {
 		characters.at(i).~Character();
 	}
-	for (int i = 0; i < markers.size(); i++) {
+	for (int i = 0; i < (int)markers.size(); i++) {
 		markers.at(i).~Marker();
 	}
 	
@@ -93,10 +93,10 @@ Game::~Game()
 void Game::sortCharacters()
 {	
 	//Character temp("");
-	for (int i = 0; i < characters.size()-1; i++)
+	for (int i = 0; i < (int)characters.size()-1; i++)
 	{
 		//compare elemet to the next element, and swap if condition is true
-		for (int j = 0; j < characters.size() - i - 1; j++)
+		for (int j = 0; j < (int)characters.size() - i - 1; j++)
 		{
 			if (characters[j].compare(characters[j + 1])) {
 				std::swap(characters.at(j), characters.at(j+1));				

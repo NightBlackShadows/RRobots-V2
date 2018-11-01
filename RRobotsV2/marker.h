@@ -8,8 +8,8 @@ class Marker :
 public:
 	Marker(std::string filepath);
 	Marker(std::string filepath, int widthPerSprite, int heightPerSprite, int columbs);
-
 	bool loadImage(SDL_Renderer* renderer);
+	bool defineImage(int columbs);
 	SDL_Rect* getSpriteRect(ColorType color);
 
 	~Marker();

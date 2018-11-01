@@ -34,7 +34,7 @@ after_build:
   - cmd: 7z a RRobots.zip C:\lib\SDL2-2.0.8\lib\x86\*.dll
 
 artifacts:
-- path: RRobots.7z
+- path: RRobots.zip
   name: Debug
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

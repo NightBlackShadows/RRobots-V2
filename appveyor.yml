@@ -28,10 +28,10 @@ build:
 after_build:
   - cmd: 7z a RRobots.zip %APPVEYOR_BUILD_FOLDER%\RRobotsV2\Debug\*.exe
   - cmd: 7z a RRobots.zip %APPVEYOR_BUILD_FOLDER%\RRobotsV2\resources
-  - cmd: 7z a RRobots.zip C:\lib\SDL2_image-2.0.3\lib\x86\*.dll
   - cmd: 7z a RRobots.zip C:\lib\SDL2_mixer-2.0.2\lib\x86\*.dll
   - cmd: 7z a RRobots.zip C:\lib\SDL2_ttf-2.0.14\lib\x86\*.dll
   - cmd: 7z a RRobots.zip C:\lib\SDL2_net-2.0.1\lib\x86\*.dll
+  - cmd: 7z a RRobots.zip C:\lib\SDL2_image-2.0.3\lib\x86\*.dll
   - cmd: 7z a RRobots.zip C:\lib\SDL2-2.0.8\lib\x86\*.dll
 
 artifacts:

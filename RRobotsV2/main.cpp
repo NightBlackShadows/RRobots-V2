@@ -2,10 +2,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "Board.h"
-#include "Character.h"
-#include "Marker.h"
-#include "ColorType.h"
+#include "Game.h"
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -18,11 +15,9 @@ SDL_Surface* gHelloWorld = NULL;
 
 SDL_Renderer* renderer = NULL;
 
-Board board;
-
+Game game;
 bool init();
-bool loadMedia(Character* drow,Marker* marker);
-void draw(Character* drow, Marker* marker);
+void draw();
 void close();
 
 
@@ -37,26 +32,12 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
+		if (game.initGame(renderer)) {
 
-		Character drow("resources/Characters/drow_male2.png", 32, 48, 4, 4);
-		Marker marker("resources/Marker/marker.png", 20, 20, 6);
-		//Load media
-		if (!loadMedia(&drow,&marker))
-		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{
-
-
-			//Apply the image
-			//SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
-			//Update the surface
-			//SDL_UpdateWindowSurface(gWindow);      
-
-			//Event handler
-			SDL_Event e;
 			while (running) {
+
+				//Event handler
+				SDL_Event e;
 				//Handle events on queue
 				while (SDL_PollEvent(&e) != 0)
 				{
@@ -68,14 +49,16 @@ int main(int argc, char* args[]) {
 					}
 
 				}
-				draw(&drow,&marker);
+				game.runGame();
+				draw();
 			}
 		}
-		drow.~Character();
-		marker.~Marker();
+		else {
+			printf("could not init game\n");
+		}
 	}
 
-	
+
 
 	//Free resources and close SDL
 	close();
@@ -83,22 +66,14 @@ int main(int argc, char* args[]) {
 	return 0;
 }
 
-void draw(Character* drow, Marker* marker) {
+void draw() {
 
 	//Vill man testa att skriva ut något på bilden så gör det här!
 
 	//SDL_RenderClear(renderer);
-
-	//Draws the map
-	for (int y = 0; y < BOARDHEIGHT; y++) {
-		for (int x = 0; x < BOARDWIDTH; x++) {
-			SDL_RenderCopy(renderer, board.getImageFromMap(x, y), NULL, board.getRectangle(x, y));
-		}
-	}
-	SDL_RenderCopyEx(renderer, marker->getTexture(), marker->getSpriteRect(ColorType::RED), marker->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
-	SDL_RenderCopyEx(renderer, drow->getTexture(), drow->getSpriteRect(WayType::UP), drow->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
-
 	//Update screen
+	game.drawGame(renderer);
+
 	SDL_RenderPresent(renderer);
 
 }
@@ -151,38 +126,12 @@ bool init() {
 	return true;
 }
 
-bool loadMedia(Character* drow,Marker* marker) {
-	//Loading success flag
-	bool success = true;
-
-	if (!board.loadImages(renderer)) {
-		printf("Could not load Map;");
-		return false;
-	}
-
-
-	if (!drow->loadImage(renderer)) {
-		printf("Could not load drow;");
-		return false;
-	}
-
-	if (!marker->loadImage(renderer)) {
-		printf("Could not load marker;");
-		return false;
-	}
-
-	marker->setNewPosition(32 + (board.getRectangle(0,0)->w*0.19), 64 + (board.getRectangle(0, 0)->w*0.19)); // för att få den mitt i rutan skall den vara ca 19% in i rutan
-	drow->setNewPosition(32, 32);
-
-	return success;
-}
-
 void close() {
 	//Free loaded image
 	//SDL_DestroyTexture(gTexture);
 	//gTexture = NULL;
 
-	board.~Board();
+	game.~Game();
 
 	//Destroy window    
 	SDL_DestroyRenderer(renderer);

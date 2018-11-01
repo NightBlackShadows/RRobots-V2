@@ -2,10 +2,13 @@
 #include "LoadTextures.h"
 
 
-Character::Character(std::string filepath, int widthPerSprite, int heightPerSprite, int columbs, int rows) : Entity::Entity(filepath, widthPerSprite, heightPerSprite)
+Character::Character(std::string filepath) : Entity::Entity(filepath)
 {
-	this->widthPerSprite = widthPerSprite;
-	this->heightPerSprite = heightPerSprite;
+	moving = false;
+}
+
+Character::Character(std::string filepath, int columbs, int rows) : Entity::Entity(filepath)
+{
 	this->columbs = columbs;
 	this->rows = rows;
 
@@ -13,12 +16,25 @@ Character::Character(std::string filepath, int widthPerSprite, int heightPerSpri
 	frame = 0;
 }
 
-bool Character::loadImage(SDL_Renderer* renderer) {
-	Entity::tex = LoadTextures::loadTexture(renderer, Entity::filepath);
+bool Character::defineImage(int columbs, int rows)
+{
+	this->columbs = columbs;
+	this->rows = rows;
 
+	int w, h;
 	if (tex == NULL) {
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+			"Missing texture",
+			"Texture for character not loaded",
+			NULL);
 		return false;
 	}
+	SDL_QueryTexture(tex, NULL, NULL, &w, &h);
+
+	widthPerSprite = w / columbs;
+	heightPerSprite = h / rows;
+	position.w = widthPerSprite;
+	position.h = heightPerSprite;
 
 	for (int y = 0; y < this->rows; y++) {
 		for (int x = 0; x < this->columbs; x++) {
@@ -30,7 +46,30 @@ bool Character::loadImage(SDL_Renderer* renderer) {
 			sprites.push_back(rect);
 		}
 	}
+	frame = 0;
+
 	return true;
+}
+
+
+
+bool Character::loadImage(SDL_Renderer* renderer) {
+	Entity::tex = LoadTextures::loadTexture(renderer, Entity::filepath);
+
+	if (tex == NULL) {
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+			"Missing texture",
+			"Texture for character not loaded",
+			NULL);
+		return false;
+	}
+
+	return true;
+}
+
+void Character::setColor(int color)
+{
+	this->color = static_cast<ColorType>(color);
 }
 
 SDL_Texture * Character::getTexture()
@@ -87,7 +126,16 @@ SDL_Rect * Character::getPositionRect()
 	return Entity::getPositionRect();
 }
 
+ColorType Character::getColor()
+{
+	return color;
+}
 
+bool Character::compare(Character other)
+{
+	SDL_Rect otherRect = *other.getPositionRect();
+	return (position.y > otherRect.y);
+}
 
 void Character::resetSprite()
 {

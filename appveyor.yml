@@ -26,7 +26,7 @@ build:
   project: RRobotsV2/RRobotsV2.sln
   verbosity: minimal
 after_build:
-  - cmd: 7z a RRobots.zip %APPVEYOR_BUILD_FOLDER%\Debug\*.exe
+  - cmd: 7z a RRobots.zip %APPVEYOR_BUILD_FOLDER%\RRobotsV2\Debug\*.exe
   - cmd: 7z a RRobots.zip C:\lib\SDL2_image-2.0.3\lib\x86\*.dll
   - cmd: 7z a RRobots.zip C:\lib\SDL2_mixer-2.0.2\lib\x86\*.dll
   - cmd: 7z a RRobots.zip C:\lib\SDL2_ttf-2.0.14\lib\x86\*.dll

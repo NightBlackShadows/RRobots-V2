@@ -5,8 +5,9 @@ Game::Game()
 {
 }
 
-bool Game::initGame(SDL_Renderer* renderer)
+bool Game::initGame(SDL_Renderer* renderer, Options options)
 {
+	this->options = options;
 	if (board.loadImages(renderer)) {
 		gl.setEntityBoard(board.getEntityBoard());
 		gl.setGameBoard(board.getGameBoard());
@@ -65,8 +66,6 @@ void Game::drawGame(SDL_Renderer* renderer)
 			SDL_RenderCopy(renderer, board.getImageFromMap(x, y), NULL, board.getRectangle(x, y));
 		}
 	}
-
-
 
 	for (int i = 0; i < (int)markers.size(); i++) {
 		SDL_RenderCopyEx(renderer, markers.at(i).getTexture(), markers.at(i).getSpriteRect(gl.getCurrentMarker()), markers.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);

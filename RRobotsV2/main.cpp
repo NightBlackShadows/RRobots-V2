@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "Game.h"
+#include "Options.h"
+#include "WindowHandler.h"
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -16,6 +18,8 @@ SDL_Surface* gHelloWorld = NULL;
 SDL_Renderer* renderer = NULL;
 
 Game game;
+Options options;
+WindowHandler wh;
 bool init();
 void draw();
 void close();
@@ -32,8 +36,8 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		if (game.initGame(renderer)) {
-
+		wh.initWindowHandler(gWindow);
+		if (game.initGame(renderer,options)) {
 			while (running) {
 
 				//Event handler
@@ -83,6 +87,8 @@ bool init() {
 	//Initialization flag
 	bool success = true;
 
+	options.loadOptions();
+
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -92,7 +98,7 @@ bool init() {
 	else
 	{
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("RRobot 2.0", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, options.getWidth(), options.getHeight(), SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -100,6 +106,7 @@ bool init() {
 		}
 		else
 		{
+			wh.initWindowHandler(gWindow);
 			//Create renderer for window
 			renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
 			if (renderer == NULL)
@@ -119,6 +126,9 @@ bool init() {
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
+				else {
+					wh.setFullscreen(options.getFullscreen());
+				}
 			}
 		}
 	}
@@ -132,6 +142,7 @@ void close() {
 	//gTexture = NULL;
 
 	game.~Game();
+	options.~Options();
 
 	//Destroy window    
 	SDL_DestroyRenderer(renderer);

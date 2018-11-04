@@ -91,6 +91,11 @@ void GameLogic::setEntityBoard(std::vector<std::vector<int>> entityBoard)
 	this->entityBoard = entityBoard;
 }
 
+bool GameLogic::moveCharacter(Character character,WayType way)
+{
+	return false;
+}
+
 
 /*
 måste fixas till! PROTOTYP

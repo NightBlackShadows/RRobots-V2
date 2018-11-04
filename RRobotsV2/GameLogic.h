@@ -5,6 +5,7 @@
 #include "Character.h"
 #include "Marker.h"
 #include "Board.h"
+#include "Options.h"
 
 class GameLogic
 {
@@ -15,12 +16,14 @@ public:
 	ColorType getCurrentMarker();
 	void setGameBoard(std::vector<std::vector<int>> gameBoard);
 	void setEntityBoard(std::vector<std::vector<int>> entityBoard);
-	bool detectCollision(SDL_Rect character, SDL_Rect marker,WayType way);
+	bool moveCharacter(Character character,WayType way);
 	~GameLogic();
 
 private:
+	bool detectCollision(SDL_Rect character, SDL_Rect marker, WayType way);
 	std::vector<std::vector<int>> gameBoard;
 	std::vector<std::vector<int>> entityBoard;
 	ColorType currentMarker;
+	Options options;
 };
 

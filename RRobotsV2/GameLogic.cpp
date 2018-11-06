@@ -26,7 +26,7 @@ void GameLogic::randomizeCharacterPos(std::vector<Character>* characters)
 			x = rand() % 16 + 1;
 			y = rand() % 16 + 1;
 		} while (entityBoard[y][x] != 0);
-		entityBoard[y][x] = chars;
+		entityBoard[y][x] = chars+1;
 		characters->at(chars).setMapX(x);
 		characters->at(chars).setMapY(y);
 		characters->at(chars).setNewPosition(32 * x, 32 * y - 32);

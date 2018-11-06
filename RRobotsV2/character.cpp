@@ -4,7 +4,7 @@
 
 Character::Character(std::string filepath) : Entity::Entity(filepath)
 {
-	moving = false;
+	marked = false;
 }
 
 Character::Character(std::string filepath, int columbs, int rows) : Entity::Entity(filepath)
@@ -12,7 +12,7 @@ Character::Character(std::string filepath, int columbs, int rows) : Entity::Enti
 	this->columbs = columbs;
 	this->rows = rows;
 
-	moving = false;
+	marked = false;
 	frame = 0;
 }
 
@@ -70,6 +70,16 @@ bool Character::loadImage(SDL_Renderer* renderer) {
 void Character::setColor(int color)
 {
 	this->color = static_cast<ColorType>(color);
+}
+
+bool Character::getMarked()
+{
+	return marked;
+}
+
+void Character::setMarked(bool marked)
+{
+	this->marked = marked;
 }
 
 SDL_Texture * Character::getTexture()
@@ -139,7 +149,7 @@ bool Character::compare(Character other)
 
 void Character::resetSprite()
 {
-	moving = false;
+	marked = false;
 }
 
 

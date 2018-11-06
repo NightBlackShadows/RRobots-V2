@@ -26,6 +26,7 @@ bool Game::initGame(SDL_Renderer* renderer, Options options)
 	characters.push_back(Character("resources/Characters/red.png"));
 	characters.push_back(Character("resources/Characters/yellow.png"));
 	markers.push_back(Marker("resources/Marker/marker.png"));
+	marked.push_back(Character("resources/marked.png"));
 
 	for (int i = 0; i < (int)characters.size(); i++) {
 		if (characters.at(i).loadImage(renderer)) {
@@ -46,14 +47,63 @@ bool Game::initGame(SDL_Renderer* renderer, Options options)
 		markers.at(i).defineImage(6);
 	}
 
+	marked[0].loadImage(renderer);
+	marked[0].defineImage(1, 1);
+
 	gl.randomizeCharacterPos(&characters);
 	gl.randomizeMarker(&markers);
+	running = false;
+	way = WayType::NONE;
 
 	return true;
 }
 
-void Game::runGame()
+bool Game::runGame()
 {
+	if (way == WayType::NONE) {
+		SDL_Event e;
+		while(SDL_PollEvent(&e) != 0) {
+			if (e.type == SDL_QUIT) {
+				return false;
+			}
+			if (e.key.type == SDL_KEYDOWN) {
+				if (e.key.keysym.scancode == SDL_SCANCODE_LEFT || e.key.keysym.scancode == SDL_SCANCODE_A) {
+					way = WayType::LEFT;
+				}
+				else if (e.key.keysym.scancode == SDL_SCANCODE_RIGHT || e.key.keysym.scancode == SDL_SCANCODE_D) {
+					way = WayType::RIGHT;
+				}
+				else if (e.key.keysym.scancode == SDL_SCANCODE_DOWN || e.key.keysym.scancode == SDL_SCANCODE_S) {
+					way = WayType::DOWN;
+				}
+				else if (e.key.keysym.scancode == SDL_SCANCODE_UP || e.key.keysym.scancode == SDL_SCANCODE_W) {
+					way = WayType::UP;
+				}
+				else if (e.key.keysym.scancode == SDL_SCANCODE_TAB) {
+					markedCharacter = gl.changeMarked(characters);
+					for (int i = 0; i < (int)characters.size(); i++) {
+						if (characters[i].getMarked()) {
+							std::string string = std::to_string(i);
+							string += " is marked\n";
+							printf(string.c_str());
+						}
+					}
+				}
+			}
+		}
+	}
+	else {
+		dest = gl.detectCollision(characters[markedCharacter], *markers.at(0).getPositionRect(), way);
+		if (!gl.moveCharacter(characters[markedCharacter], dest)) {
+			printf("It works!:D\n");
+			way = WayType::NONE;
+		}
+	}
+
+
+	//way = WayType::NONE;
+
+	return true;
 	//sortCharacters();
 }
 
@@ -72,8 +122,16 @@ void Game::drawGame(SDL_Renderer* renderer)
 	}
 //	SDL_RenderCopyEx(renderer, marker->getTexture(), marker->getSpriteRect(ColorType::RED), marker->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 	for (int i = 0; i < (int)characters.size(); i++) {
-		SDL_RenderCopyEx(renderer, characters.at(i).getTexture(), characters.at(i).getSpriteRect(WayType::NONE), characters.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+		if (characters.at(i).getMarked()) {
+			SDL_RenderCopy(renderer, marked.at(0).getTexture(), marked.at(0).getSpriteRect(WayType::NONE), characters.at(i).getPositionRect());
+			SDL_RenderCopyEx(renderer, characters.at(i).getTexture(), characters.at(i).getSpriteRect(way), characters.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+		}
+		else {
+			SDL_RenderCopyEx(renderer, characters.at(i).getTexture(), characters.at(i).getSpriteRect(WayType::NONE), characters.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+		}
 	}
+	SDL_RenderCopyEx(renderer, characters.at(markedCharacter).getTexture(), characters.at(markedCharacter).getSpriteRect(way), characters.at(markedCharacter).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+
 }
 
 Game::~Game()

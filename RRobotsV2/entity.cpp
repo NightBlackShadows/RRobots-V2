@@ -16,6 +16,16 @@ Entity::Entity(std::string filepath, int width, int height)
 	position.h = height;
 }
 
+void Entity::setMapX(int x)
+{
+	mapX = x;
+}
+
+void Entity::setMapY(int y)
+{
+	mapY = y;
+}
+
 SDL_Rect * Entity::getPositionRect()
 {
 	return &position;
@@ -24,6 +34,16 @@ SDL_Rect * Entity::getPositionRect()
 SDL_Texture * Entity::getTexture()
 {
 	return tex;
+}
+
+int Entity::getMapXPos()
+{
+	return mapX;
+}
+
+int Entity::getMapYPos()
+{
+	return mapY;
 }
 
 void Entity::setNewPosition(int x, int y)

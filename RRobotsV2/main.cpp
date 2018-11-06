@@ -39,7 +39,7 @@ int main(int argc, char* args[]) {
 		wh.initWindowHandler(gWindow);
 		if (game.initGame(renderer,options)) {
 			while (running) {
-
+				/*
 				//Event handler
 				SDL_Event e;
 				//Handle events on queue
@@ -52,8 +52,9 @@ int main(int argc, char* args[]) {
 						running = false;
 					}
 
-				}
-				game.runGame();
+				}*/
+				running = game.runGame();
+				
 				draw();
 			}
 		}

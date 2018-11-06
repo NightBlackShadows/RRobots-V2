@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Logic">
       <UniqueIdentifier>{fd9ba0d0-008f-4b4c-b4a4-3ceed01e647f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Handlers">
+      <UniqueIdentifier>{fb33d76d-3ef0-48c6-b4a2-0da7cf8ffe68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Handlers">
+      <UniqueIdentifier>{3c61d309-ad5a-40c0-8f0f-edeed278452c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,10 +82,10 @@
       <Filter>Source Files\Menus</Filter>
     </ClCompile>
     <ClCompile Include="FileHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Handlers</Filter>
     </ClCompile>
     <ClCompile Include="WindowHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,10 +129,10 @@
       <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="FileHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Handlers</Filter>
     </ClInclude>
     <ClInclude Include="WindowHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

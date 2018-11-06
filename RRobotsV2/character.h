@@ -14,6 +14,8 @@ public:
 	bool defineImage(int columbs, int rows);
 	bool loadImage(SDL_Renderer* renderer);
 	void setColor(int color);
+	bool getMarked();
+	void setMarked(bool marked);
 	SDL_Texture* getTexture();
 	SDL_Rect* getSpriteRect(WayType wayType);
 	SDL_Rect* getPositionRect();
@@ -24,7 +26,7 @@ public:
 
 private:
 	std::vector<SDL_Rect> sprites;
-	bool moving;
+	bool marked;
 	ColorType color;
 	int frame;
 	int widthPerSprite;

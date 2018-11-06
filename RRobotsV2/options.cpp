@@ -42,6 +42,7 @@ bool Options::loadOptions()
 		printf("Could not read config file");
 		return false;
 	}
+	return true;
 }
 
 int Options::getVolume()
@@ -79,7 +80,6 @@ void Options::saveOptions()
 	options << "Volume=" << std::to_string(volume) << std::endl;
 	options << "Mute=" << std::to_string(mute) << std::endl;
 	fileHandler.writeToFile(filename, options.str());
-	
 	options.clear();
 }
 

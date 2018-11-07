@@ -1,5 +1,10 @@
 #pragma once
+#ifdef _WIN32
 #include <SDL_image.h>
+#endif
+#if defined __APPLE__ | defined __linux__ 
+#include <SDL2_image/SDL_image.h>
+#endif
 #include <vector>
 #include "entity.h"
 #include "WayType.h"

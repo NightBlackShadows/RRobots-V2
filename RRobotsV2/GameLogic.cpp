@@ -125,15 +125,35 @@ void GameLogic::setEntityBoard(std::vector<std::vector<int>> entityBoard)
 
 bool GameLogic::moveCharacter(Character &character,SDL_Rect dest)
 {
-	if (dest.x >= 0 && dest.y >= 0) {
-		character.setNewPosition(dest.x, dest.y);
+	SDL_Rect charPos = *character.getPositionRect();
+	int newX, newY;
+	newX = charPos.x;
+	newY = charPos.y;
+	if (dest.x > charPos.x) {
+		newX += 2;
 	}
-	return false;
+	else if (dest.y > charPos.y) {
+		newY += 2;
+	}
+	else if (dest.x < charPos.x) {
+		newX -= 2;
+	}
+	else if (dest.y < charPos.y) {
+		newY -= 2;
+	}
+	if (dest.x >= 0 && dest.y >= 0) {
+		if (dest.x == charPos.x && dest.y == charPos.y) {
+			return false;
+		}
+	
+		character.setNewPosition(newX, newY);
+	}
+	return true;
 }
 
 
 /*
-måste fixas till! PROTOTYP
+mÃ¥ste fixas till! PROTOTYP
 */
 SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayType way)
 {

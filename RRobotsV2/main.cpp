@@ -1,7 +1,13 @@
 #include <iostream>
 #include <string>
+#ifdef _WIN32
 #include <SDL.h>
 #include <SDL_image.h>
+#endif
+#if defined __APPLE__ || defined __LINUX__
+#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
+#endif
 #include "Game.h"
 #include "Options.h"
 #include "WindowHandler.h"

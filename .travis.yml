@@ -1,0 +1,11 @@
+
+language: cpp
+os:
+  - linux
+  # - osx
+
+sudo: required
+dist: trusty
+
+before_install:
+  - sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev libsdl2-net-dev

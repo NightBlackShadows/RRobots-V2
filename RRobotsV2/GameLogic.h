@@ -11,6 +11,7 @@
 #include "Marker.h"
 #include "Board.h"
 #include "Options.h"
+#include <SDL_image.h>
 
 class GameLogic
 {

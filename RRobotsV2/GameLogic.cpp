@@ -153,7 +153,7 @@ bool GameLogic::moveCharacter(Character &character,SDL_Rect dest)
 
 
 /*
-måste fixas till! PROTOTYP
+mÃ¥ste fixas till! PROTOTYP
 */
 SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayType way)
 {

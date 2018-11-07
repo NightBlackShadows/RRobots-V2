@@ -27,28 +27,48 @@ bool Marker::loadImage(SDL_Renderer* renderer)
 		return false;
 	}
 
-	if (Entity::position.w = 0) {
-		SDL_QueryTexture(tex, NULL, NULL, &position.w, &position.h);
+	return true;
+}
+
+bool Marker::defineImage(int columbs)
+{
+	this->columbs = columbs;
+	int w, h;
+	if (tex == NULL) {
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+			"Missing texture",
+			"Texture for marker not loaded",
+			NULL);
+		return false;
 	}
 	else {
-		position.w = widthPerSprite;
-		position.h = heightPerSprite;
+		SDL_QueryTexture(tex, NULL, NULL, &w, &h);
+		position.w = w;
+		position.h = h;
+		if (columbs == 1) {
+			return true;
+		}
+		else {
+			widthPerSprite = w / columbs;
+			position.w = widthPerSprite;
+			heightPerSprite = h;
 
-		for (int y = 0; y < 1; y++) {
-			for (int x = 0; x < this->columbs; x++) {
-				SDL_Rect rect;
-				rect.w = widthPerSprite;
-				rect.h = heightPerSprite;
-				rect.x = widthPerSprite * x;
-				rect.y = heightPerSprite * y;
-				sprites.push_back(rect);
+			for (int y = 0; y < 1; y++) {
+				for (int x = 0; x < this->columbs; x++) {
+					SDL_Rect rect;
+					rect.w = widthPerSprite;
+					rect.h = heightPerSprite;
+					rect.x = widthPerSprite * x;
+					rect.y = heightPerSprite * y;
+					sprites.push_back(rect);
+				}
 			}
 		}
-		
-
 	}
 	return true;
 }
+
+
 
 SDL_Rect * Marker::getSpriteRect(ColorType color)
 {
@@ -63,10 +83,8 @@ SDL_Rect * Marker::getSpriteRect(ColorType color)
 		return &sprites.at(3);
 	case ColorType::YELLOW:
 		return &sprites.at(4);
-	case ColorType::WHITE:
-		return &sprites.at(5);
 	default:
-		return &sprites.at(0);
+		return &sprites.at(5);
 	}
 	return nullptr;
 }

@@ -3,6 +3,15 @@ image: Visual Studio 2017
 platform: x86
 configuration: Debug
 
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+skip_commits:
+  files:
+    - docs/*
+    - LICENSE
+    - README.md
+
 before_build:
     # Print Powershell version.  
     #- ps: $PSVersionTable.PSVersion  

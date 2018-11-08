@@ -20,8 +20,8 @@ bool Game::initGame(SDL_Renderer* renderer, Options options)
 	for (int i = (int)ColorType::BLACK; i < (int)ColorType::YELLOW; i++) {
 
 	}*/
-	characters.push_back(Character("resources/Characters/blue.png"));
 	characters.push_back(Character("resources/Characters/green.png"));
+	characters.push_back(Character("resources/Characters/blue.png"));
 	characters.push_back(Character("resources/Characters/black.png"));
 	characters.push_back(Character("resources/Characters/red.png"));
 	characters.push_back(Character("resources/Characters/yellow.png"));
@@ -46,6 +46,7 @@ bool Game::initGame(SDL_Renderer* renderer, Options options)
 		markers.at(i).loadImage(renderer);
 		markers.at(i).defineImage(6);
 	}
+
 
 	marked[0].loadImage(renderer);
 	marked[0].defineImage(1, 1);
@@ -81,27 +82,23 @@ bool Game::runGame()
 				}
 				else if (e.key.keysym.scancode == SDL_SCANCODE_TAB) {
 					markedCharacter = gl.changeMarked(characters);
-					for (int i = 0; i < (int)characters.size(); i++) {
-						if (characters[i].getMarked()) {
-							std::string string = std::to_string(i);
-							string += " is marked\n";
-							printf(string.c_str());
-						}
-					}
 				}
 			}
 		}
 	}
 	else {
-		dest = gl.detectCollision(characters[markedCharacter], *markers.at(0).getPositionRect(), way);
+		if (dest.x == 0) {
+			dest = gl.detectCollision(characters[markedCharacter], *markers.at(0).getPositionRect(), way);
+		}
 		if (!gl.moveCharacter(characters[markedCharacter], dest)) {
-			printf("It works!:D\n");
 			way = WayType::NONE;
+			dest.x = 0;
 		}
 	}
-
-
-	//way = WayType::NONE;
+	
+	if (gl.markerCollision(characters.at(markedCharacter), markers.at(0))) {
+		gl.randomizeMarker(&markers);
+	}
 
 	return true;
 	//sortCharacters();
@@ -120,18 +117,24 @@ void Game::drawGame(SDL_Renderer* renderer)
 	for (int i = 0; i < (int)markers.size(); i++) {
 		SDL_RenderCopyEx(renderer, markers.at(i).getTexture(), markers.at(i).getSpriteRect(gl.getCurrentMarker()), markers.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 	}
-//	SDL_RenderCopyEx(renderer, marker->getTexture(), marker->getSpriteRect(ColorType::RED), marker->getPositionRect(), 0, NULL, SDL_FLIP_NONE);
-	for (int i = 0; i < (int)characters.size(); i++) {
-		if (characters.at(i).getMarked()) {
-			SDL_RenderCopy(renderer, marked.at(0).getTexture(), marked.at(0).getSpriteRect(WayType::NONE), characters.at(i).getPositionRect());
-			SDL_RenderCopyEx(renderer, characters.at(i).getTexture(), characters.at(i).getSpriteRect(way), characters.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
-		}
-		else {
-			SDL_RenderCopyEx(renderer, characters.at(i).getTexture(), characters.at(i).getSpriteRect(WayType::NONE), characters.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+
+	entBoard = gl.getEntityBoard();
+
+	for (int y = 1; y < BOARDHEIGHT - 1; y++) {
+		for (int x = 1; x < BOARDWIDTH - 1; x++) {
+			if (entBoard[y][x] >= 2 && entBoard[y][x] < 7) {
+				if (characters.at(entBoard[y][x] - 2).getMarked()) {
+					SDL_RenderCopy(renderer, marked.at(0).getTexture(), marked.at(0).getSpriteRect(WayType::NONE), characters.at(entBoard[y][x] - 2).getPositionRect());
+					SDL_RenderCopyEx(renderer, characters.at(entBoard[y][x] - 2).getTexture(), characters.at(entBoard[y][x] - 2).getSpriteRect(way), characters.at(entBoard[y][x] - 2).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+				}
+				else {
+					SDL_RenderCopyEx(renderer, characters.at(entBoard[y][x] - 2).getTexture(), characters.at(entBoard[y][x] - 2).getSpriteRect(WayType::NONE), characters.at(entBoard[y][x] - 2).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+				}
+			}
 		}
 	}
-	SDL_RenderCopyEx(renderer, characters.at(markedCharacter).getTexture(), characters.at(markedCharacter).getSpriteRect(way), characters.at(markedCharacter).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 
+	SDL_RenderCopyEx(renderer, characters.at(markedCharacter).getTexture(), characters.at(markedCharacter).getSpriteRect(way), characters.at(markedCharacter).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 }
 
 Game::~Game()

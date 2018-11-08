@@ -14,6 +14,7 @@ Options::Options()
 		screenWidth = 800;
 		screenHeight = 600;
 		volume = 50;
+		fpsLock = 60;
 		mute = false;
 		fullscreen = false;
 		saveOptions();
@@ -65,6 +66,11 @@ int Options::getHeight()
 	return screenHeight;
 }
 
+int Options::getFPSLock()
+{
+	return fpsLock;
+}
+
 bool Options::getFullscreen()
 {
 	return fullscreen;
@@ -77,6 +83,7 @@ void Options::saveOptions()
 	options << "ScreenWidth=" << std::to_string(screenWidth) << std::endl;
 	options << "ScreenHeight=" << std::to_string(screenHeight) << std::endl;
 	options << "Fullscreen=" << std::to_string(fullscreen) << std::endl;
+	options << "FPSLock=" << std::to_string(fpsLock) << std::endl;
 	options << "Volume=" << std::to_string(volume) << std::endl;
 	options << "Mute=" << std::to_string(mute) << std::endl;
 	fileHandler.writeToFile(filename, options.str());
@@ -97,6 +104,9 @@ void Options::loadValues(std::string key, std::string value)
 	}
 	else if (key == "Fullscreen") {
 		fullscreen = std::stoi(value);
+	}
+	else if (key == "FPSLock") {
+		fpsLock = std::stoi(value);
 	}
 	else if (key == "Volume") {
 		volume = std::stoi(value);

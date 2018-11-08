@@ -19,6 +19,7 @@ public:
 private:
 	SDL_Rect dest;
 	void sortCharacters();
+	std::vector<std::vector<int>> entBoard;
 	std::vector<Character> characters;
 	std::vector<Marker> markers;
 	std::vector<Character> marked;

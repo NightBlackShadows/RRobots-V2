@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "Options.h"
 #include "WindowHandler.h"
+#include "Timer.h"
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -31,10 +32,18 @@ void draw();
 void close();
 
 
+int FPS_LOCK = 60;
+
 int main(int argc, char* args[]) {
 	//Start up SDL and create window
 
 	bool running = true;
+	//The frames per second timer
+	Timer fpsTimer;
+
+	//The frames per second cap timer
+	Timer capTimer;
+
 
 	if (!init())
 	{
@@ -44,24 +53,32 @@ int main(int argc, char* args[]) {
 	{
 		wh.initWindowHandler(gWindow);
 		if (game.initGame(renderer,options)) {
+
+			//Start counting frames per second
+			int countedFrames = 0;
+			int SCREEN_TICKS_PER_FRAME = 1000 / FPS_LOCK;
+			fpsTimer.start();
 			while (running) {
-				/*
-				//Event handler
-				SDL_Event e;
-				//Handle events on queue
-				while (SDL_PollEvent(&e) != 0)
-				{
-
-					//User requests quit
-					if (e.type == SDL_QUIT)
-					{
-						running = false;
-					}
-
-				}*/
-				running = game.runGame();
 				
+				capTimer.start();
+				running = game.runGame();
+
+				//Calculate and correct fps
+				float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
+				if (avgFPS > 2000000)
+				{
+					avgFPS = 0;
+				}
+
 				draw();
+				++countedFrames;
+				//If frame finished early
+				int frameTicks = capTimer.getTicks();
+				if (frameTicks < SCREEN_TICKS_PER_FRAME)
+				{
+					//Wait remaining time
+					SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
+				}
 			}
 		}
 		else {
@@ -95,7 +112,7 @@ bool init() {
 	bool success = true;
 
 	options.loadOptions();
-
+	FPS_LOCK = options.getFPSLock();
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{

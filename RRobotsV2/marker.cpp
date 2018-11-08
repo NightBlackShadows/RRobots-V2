@@ -89,6 +89,16 @@ SDL_Rect * Marker::getSpriteRect(ColorType color)
 	return nullptr;
 }
 
+void Marker::setColor(ColorType newColor)
+{
+	color = newColor;
+}
+
+ColorType Marker::getColor()
+{
+	return color;
+}
+
 
 Marker::~Marker()
 {

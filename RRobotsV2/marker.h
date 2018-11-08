@@ -11,11 +11,14 @@ public:
 	bool loadImage(SDL_Renderer* renderer);
 	bool defineImage(int columbs);
 	SDL_Rect* getSpriteRect(ColorType color);
+	void setColor(ColorType newColor);
+	ColorType getColor();
 
 	~Marker();
 
 private:
 	std::vector<SDL_Rect> sprites;
+	ColorType color;
 	int widthPerSprite;
 	int heightPerSprite;
 	int columbs;

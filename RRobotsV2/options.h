@@ -16,6 +16,7 @@ public:
 	bool getMute();
 	int getWidth();
 	int getHeight();
+	int getFPSLock();
 	bool getFullscreen();
 	void saveOptions();
 	~Options();
@@ -23,6 +24,7 @@ private:
 	void loadValues(std::string key,std::string value);
 	FileHandler fileHandler;
 	std::string filename;
+	int fpsLock;
 	int screenWidth;
 	int screenHeight;
 	int volume;

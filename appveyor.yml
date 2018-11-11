@@ -11,6 +11,7 @@ skip_commits:
     - docs/*
     - LICENSE
     - README.md
+    - .travis.yml
 
 before_build:
     # Print Powershell version.  

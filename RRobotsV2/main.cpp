@@ -10,6 +10,7 @@
 #endif
 #include "Game.h"
 #include "Options.h"
+#include "MusicHandler.h"
 #include "WindowHandler.h"
 #include "Timer.h"
 
@@ -27,6 +28,7 @@ SDL_Renderer* renderer = NULL;
 Game game;
 Options options;
 WindowHandler wh;
+MusicHandler mh;
 bool init();
 void draw();
 void close();
@@ -121,6 +123,16 @@ bool init() {
 	}
 	else
 	{
+		if (mh.initMusic()) {
+			if (mh.loadMusic()) {
+				mh.changeVolume(50);
+				mh.playMusic();
+			}
+			else {
+				printf("Some or all music could not be loaded\n");
+			}
+		}
+
 		//Create window
 		gWindow = SDL_CreateWindow("RRobot 2.0", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, options.getWidth(), options.getHeight(), SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
@@ -167,6 +179,7 @@ void close() {
 
 	game.~Game();
 	options.~Options();
+	mh.~MusicHandler();
 
 	//Destroy window    
 	SDL_DestroyRenderer(renderer);

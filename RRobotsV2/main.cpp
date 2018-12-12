@@ -6,7 +6,7 @@
 #endif
 #if defined __APPLE__ || defined __LINUX__
 #include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #endif
 #include "Game.h"
 #include "Options.h"

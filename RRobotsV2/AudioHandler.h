@@ -7,7 +7,7 @@
 #endif
 #if defined __APPLE__ | defined __LINUX__
 #include <SDL2/SDL2.h>
-#include <SDL2_image/SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 #endif
 
 class AudioHandler
@@ -24,7 +24,7 @@ public:
 	~AudioHandler();
 private:
 	int EffectVolume, frequency, channels, chunksize;
-	uint16_t format;
+	Uint16 format;
 	bool loaded;
 	std::vector<Mix_Music *> songs;
 };

@@ -4,11 +4,11 @@
 
 AudioHandler::AudioHandler()
 {
-	loaded = false;
-	frequency = 22050;
-	channels = 2;
-	chunksize = 4096;
-	format = MIX_DEFAULT_FORMAT;
+	this->loaded = false;
+	this->frequency = 22050;
+	this->channels = 2;
+	this->chunksize = 4096;
+	this->format = MIX_DEFAULT_FORMAT;
 }
 
 

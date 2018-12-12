@@ -4,7 +4,7 @@
 #include <SDL_image.h>
 #endif
 #if defined __APPLE__ | defined __LINUX__
-#include <SDL2_image/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #endif
 #include "FileHandler.h"
 class Options

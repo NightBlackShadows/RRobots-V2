@@ -5,7 +5,7 @@
 #include <SDL_mixer.h>
 #endif
 #if defined __APPLE__ | defined __LINUX__
-#include <SDL2_image/SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 #endif
 
 class AudioHandler

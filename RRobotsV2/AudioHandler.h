@@ -15,6 +15,7 @@ class AudioHandler
 public:
 	AudioHandler();
 
+	bool initMusic();
 	bool loadMusic();
 	void playMusic();
 	void pauseMusic();
@@ -22,7 +23,9 @@ public:
 
 	~AudioHandler();
 private:
-	int EffectVolume;
+	int EffectVolume, frequency, channels, chunksize;
+	uint16_t format;
+	bool loaded;
 	std::vector<Mix_Music *> songs;
 };
 

@@ -23,9 +23,9 @@ public:
 
 	~AudioHandler();
 private:
-	int EffectVolume, frequency, channels, chunksize;
-	Uint16 format;
-	bool loaded;
-	std::vector<Mix_Music *> songs;
+  int EffectVolume, frequency, channels, chunksize;
+  uint16_t format;
+  bool loaded;
+  std::vector<Mix_Music *> songs;
 };
 

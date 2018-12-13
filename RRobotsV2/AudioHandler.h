@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <stdint.h>
 #ifdef _WIN32
 #include <SDL.h>
 #include <SDL_mixer.h>
@@ -13,15 +14,15 @@
 class AudioHandler
 {
 public:
-	AudioHandler();
+  AudioHandler();
 
-	bool initMusic();
-	bool loadMusic();
-	void playMusic();
-	void pauseMusic();
-	void changeVolume(int volume);
+  bool initMusic();
+  bool loadMusic();
+  void playMusic();
+  void pauseMusic();
+  void changeVolume(int volume);
 
-	~AudioHandler();
+  ~AudioHandler();
 private:
   int EffectVolume, frequency, channels, chunksize;
   uint16_t format;

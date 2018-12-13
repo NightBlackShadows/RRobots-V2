@@ -18,4 +18,4 @@ before_install:
   - cd RRobotsV2/build
   - cmake ..
 
-script: make && make install
+script: make VERBOSE=1

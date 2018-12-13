@@ -9,6 +9,7 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find package(SDL2_net REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
-target_link_libraries(RRobotsV2 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL_2_MIXER_LIBRARIES} ${SDL2_NET_LIBRARIES})
+target_link_libraries(RRobotsV2 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL_2_MIXER_LIBRARIES} ${SDL2_NET_LIBRARIES} ${SDL2_TTF_LIBRARIES})

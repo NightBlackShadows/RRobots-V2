@@ -1,4 +1,5 @@
 #include "MusicHandler.h"
+#include <stdio.h>
 
 MusicHandler::MusicHandler()
 {

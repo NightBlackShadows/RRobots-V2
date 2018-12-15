@@ -2,7 +2,9 @@
 #ifdef _WIN32
 #include <SDL_image.h>
 #endif
-#if defined __APPLE__ | defined __linux__ 
+#ifdef __APPLE__ 
+#endif
+#ifdef __linux__ 
 #include <SDL2/SDL_image.h>
 #endif
 #include <vector>

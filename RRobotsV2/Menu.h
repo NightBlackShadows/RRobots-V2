@@ -1,8 +1,8 @@
 #pragma once
-class menu
+class Menu
 {
 public:
-	menu();
-	~menu();
+	Menu();
+	~Menu();
 };
 

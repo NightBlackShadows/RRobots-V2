@@ -1,12 +1,12 @@
-#include "menu.h"
+#include "Menu.h"
 
 
 
-menu::menu()
+Menu::Menu()
 {
 }
 
 
-menu::~menu()
+Menu::~Menu()
 {
 }

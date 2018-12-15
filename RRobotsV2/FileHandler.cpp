@@ -26,6 +26,7 @@ bool FileHandler::writeToFile(std::string filename, std::string text)
 	return false;
 }
 
+/*
 std::fstream FileHandler::readFromFile(std::string filename)
 {
 	std::fstream fileStream;
@@ -38,7 +39,7 @@ std::fstream FileHandler::readFromFile(std::string filename)
 		return fileStream;
 	}
 	else throw ("Unable to open file:" + filename);
-}
+}*/
 
 
 

@@ -8,7 +8,7 @@
 #ifdef __APPLE__ 
 #endif
 #ifdef __linux__
-#include <SDL2/SDL2.h>
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #endif
 

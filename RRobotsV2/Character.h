@@ -8,7 +8,7 @@
 #include <SDL2/SDL_image.h>
 #endif
 #include <vector>
-#include "entity.h"
+#include "Entity.h"
 #include "WayType.h"
 #include "ColorType.h"
 

@@ -9,6 +9,7 @@
 #endif
 #include "TileType.h"
 #include <vector>
+#include <string>
 
 #define BOARDWIDTH 18
 #define BOARDHEIGHT 18

@@ -5,7 +5,7 @@ os:
   # - osx
 
 compiler:
-  - gcc
+  - g++
   - clang
 
 sudo: required

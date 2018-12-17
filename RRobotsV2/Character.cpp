@@ -84,7 +84,7 @@ void Character::setMarked(bool marked)
 
 SDL_Texture * Character::getTexture()
 {
-	return Entity::getTexture();
+	return tex;
 }
 
 SDL_Rect * Character::getSpriteRect(WayType wayType)
@@ -133,7 +133,7 @@ SDL_Rect * Character::getSpriteRect(WayType wayType)
 
 SDL_Rect * Character::getPositionRect()
 {
-	return Entity::getPositionRect();
+	return &position;
 }
 
 ColorType Character::getColor()
@@ -156,6 +156,8 @@ void Character::resetSprite()
 
 Character::~Character()
 {
-	Entity::~Entity();
+	SDL_DestroyTexture(tex);
+	tex = NULL;
+	filepath = "";
 	sprites.clear();
 }

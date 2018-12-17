@@ -156,7 +156,10 @@ void Character::resetSprite()
 
 Character::~Character()
 {
-	SDL_DestroyTexture(tex);
+	if (tex != NULL)
+	{
+		SDL_DestroyTexture(tex);
+	}
 	tex = NULL;
 	filepath = "";
 	sprites.clear();

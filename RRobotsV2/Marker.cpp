@@ -21,7 +21,7 @@ Marker::Marker(std::string filepath, int widthPerSprite, int heightPerSprite, in
 
 bool Marker::loadImage(SDL_Renderer* renderer)
 {
-	Entity::tex = LoadTextures::loadTexture(renderer, Entity::filepath);
+	tex = LoadTextures::loadTexture(renderer, filepath);
 
 	if (tex == NULL) {
 		return false;
@@ -102,6 +102,11 @@ ColorType Marker::getColor()
 
 Marker::~Marker()
 {
-	Entity::~Entity();
+	if (tex != NULL)
+	{
+		SDL_DestroyTexture(tex);
+	}
+	tex = NULL;
+	filepath = "";
 	sprites.clear();
 }

@@ -13,3 +13,7 @@ A great THANK YOU to:
 http://untamed.wild-refuge.net - Sprites used are from
 
 https://www.bensound.com/royalty-free-music - Music 
+
+Requires:
+SDL2
+SDL2_image

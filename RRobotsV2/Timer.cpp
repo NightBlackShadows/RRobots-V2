@@ -2,7 +2,7 @@
 #ifdef _WIN32
 #include <SDL_timer.h>
 #endif
-#if defined __APPLE__ | __LINUX__
+#if defined __APPLE__ | __linux__
 #include <SDL2/SDL_timer.h>
 #endif
 

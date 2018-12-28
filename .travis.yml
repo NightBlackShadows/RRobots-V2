@@ -4,9 +4,18 @@ os:
   - linux
   # - osx
 
+compiler:
+  - g++
+  - clang
+
 sudo: required
 dist: trusty
 
 before_install:
   - sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev
   - sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev libsdl2-net-dev
+  - mkdir RRobotsV2/build
+  - cd RRobotsV2/build
+  - cmake ..
+
+script: make VERBOSE=1

@@ -100,7 +100,7 @@ int main(int argc, char* args[]) {
 
 void draw() {
 
-	//Vill man testa att skriva ut något på bilden så gör det här!
+	//Vill man testa att skriva ut nÃ¥got pÃ¥ bilden sÃ¥ gÃ¶r det hÃ¤r!
 
 	//SDL_RenderClear(renderer);
 	//Update screen

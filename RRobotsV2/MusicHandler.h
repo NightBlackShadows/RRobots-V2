@@ -6,6 +6,8 @@
 #include <SDL_mixer.h>
 #endif
 #ifdef __APPLE__ 
+#include <SDL2/SDL.h>
+#include <SDL2_mixer/SDL_mixer.h>
 #endif
 #ifdef __linux__
 #include <SDL2/SDL.h>

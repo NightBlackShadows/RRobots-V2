@@ -4,7 +4,9 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #endif
-#if defined __APPLE__ || defined __linux__
+#ifdef __APPLE__ 
+#endif
+#ifdef __linux__
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #endif
@@ -98,7 +100,7 @@ int main(int argc, char* args[]) {
 
 void draw() {
 
-	//Vill man testa att skriva ut något på bilden så gör det här!
+	//Vill man testa att skriva ut nÃ¥got pÃ¥ bilden sÃ¥ gÃ¶r det hÃ¤r!
 
 	//SDL_RenderClear(renderer);
 	//Update screen

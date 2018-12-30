@@ -4,7 +4,9 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #endif
-#if defined __APPLE__ || defined __linux__
+#ifdef __APPLE__ 
+#endif
+#ifdef __linux__
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #endif

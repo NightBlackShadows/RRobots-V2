@@ -1,7 +1,7 @@
 #include "Board.h"
 #include "LoadTextures.h"
 
-
+//Constructor
 Board::Board()
 {
 	//gameBoard = new std::vector< std::vector<TileType> >(BOARDHEIGHT, std::vector<TileType>(BOARDWIDTH));
@@ -52,7 +52,7 @@ Board::Board()
 }
 
 
-
+//decunstruct the all the images and boards
 Board::~Board()
 {
 	//Free loaded image
@@ -72,18 +72,23 @@ Board::~Board()
 	GameBoard_ButtomRight = NULL;
 	SDL_DestroyTexture(GameBoard_ButtomLeft);
 	GameBoard_ButtomLeft = NULL;
+	gameBoard.clear();
+	entityBoard.clear();
 }
 
+//Get the current gameboard
 std::vector< std::vector<int> > Board::getGameBoard()
 {
 	return Board::gameBoard;
 }
 
+//Get the current entity board
 std::vector< std::vector<int> > Board::getEntityBoard()
 {
 	return Board::entityBoard;
 }
 
+//Set the gameboard 
 void Board::setGameBoard(std::vector< std::vector<int> > Board)
 {
 	for (int y = 1; y < BOARDHEIGHT; y++) {
@@ -93,6 +98,7 @@ void Board::setGameBoard(std::vector< std::vector<int> > Board)
 	}
 }
 
+//Sets a complete board
 void Board::setEntityBoard(std::vector< std::vector<int> > board)
 {
 	for (int y = 1; y < BOARDHEIGHT -1; y++) {
@@ -103,7 +109,7 @@ void Board::setEntityBoard(std::vector< std::vector<int> > board)
 }
 
 
-
+//Returns what image is on the board
 SDL_Texture* Board::getImageFromMap(int x, int y)
 {
 	switch (gameBoard[y][x]) {
@@ -128,6 +134,8 @@ SDL_Texture* Board::getImageFromMap(int x, int y)
 	}
 }
 
+//Get the rectangle of the board piece
+//Todo read the actual value of the piece
 SDL_Rect* Board::getRectangle(int x, int y)
 {
 	rectangle.w = 32;
@@ -138,6 +146,7 @@ SDL_Rect* Board::getRectangle(int x, int y)
 	return &rectangle;
 }
 
+//Load the images that are used on the board
 bool Board::loadImages(SDL_Renderer* renderer)
 {
 	//Load splash image
@@ -150,6 +159,7 @@ bool Board::loadImages(SDL_Renderer* renderer)
 	GameBoard_ButtomRight = LoadTextures::loadTexture(renderer, "resources/Map/CornerGimpRutaBR.png");
 	GameBoard_ButtomLeft = LoadTextures::loadTexture(renderer, "resources/Map/CornerGimpRutaBL.png");
 
+	//Check if all images are loaded correctly
 	if (GameBoard_brick == NULL) {
 		return false;
 	}
@@ -186,6 +196,7 @@ bool Board::loadImages(SDL_Renderer* renderer)
 	return true;
 }
 
+//returns a string of the board
 std::string Board::toString() {
 	std::string buffer;
 

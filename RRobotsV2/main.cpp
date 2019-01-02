@@ -167,7 +167,7 @@ bool init() {
 					success = false;
 				}
 				else {
-					wh.setFullscreen(options.getFullscreen());
+					wh.switchFullscreen(options.getFullscreen());
 				}
 			}
 		}

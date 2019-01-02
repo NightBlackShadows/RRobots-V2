@@ -20,10 +20,10 @@ class AudioHandler
 public:
   AudioHandler();
 
-  bool initMusic();
-  bool loadMusic();
-  void playMusic();
-  void pauseMusic();
+  bool initSounds();
+  bool loadSounds();
+  void playSound();
+  void pauseSound();
   void changeVolume(int volume);
 
   ~AudioHandler();

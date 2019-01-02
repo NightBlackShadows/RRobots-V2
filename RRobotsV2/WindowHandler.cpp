@@ -6,7 +6,7 @@ WindowHandler::WindowHandler()
 {
 }
 
-
+//Initialize display window
 bool WindowHandler::initWindowHandler(SDL_Window * window)
 {
 	this->window = window;
@@ -14,6 +14,7 @@ bool WindowHandler::initWindowHandler(SDL_Window * window)
 	return false;
 }
 
+//Set resolution
 bool WindowHandler::setResolution(int w, int h)
 {
 
@@ -29,7 +30,8 @@ bool WindowHandler::setResolution(int w, int h)
 	return true;
 }
 
-void WindowHandler::setFullscreen(bool fullscreen)
+//Switch fullscreen
+void WindowHandler::switchFullscreen(bool fullscreen)
 {
 	if (fullscreen == true) {
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
@@ -39,11 +41,13 @@ void WindowHandler::setFullscreen(bool fullscreen)
 	}
 }
 
+//Get current display window
 SDL_Window * WindowHandler::getWindow()
 {
 	return window;
 }
 
+//Get current resolution of window
 void WindowHandler::getWindowSize(int * width, int * height)
 {
 	SDL_GetWindowSize(window, width, height);

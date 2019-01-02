@@ -6,7 +6,7 @@
 #include <SDL2/SDL_timer.h>
 #endif
 
-
+//Timer for FPS lock
 Timer::Timer()
 {
 	//Initialize the variables

@@ -1,7 +1,7 @@
 #include "AudioHandler.h"
 #include <stdio.h>
 
-
+//Constructor
 AudioHandler::AudioHandler()
 {
 	this->loaded = false;
@@ -13,7 +13,7 @@ AudioHandler::AudioHandler()
 
 
 
-bool AudioHandler::initMusic()
+bool AudioHandler::initSounds()
 {
 	//Initialize the music
 	if (SDL_Init(SDL_INIT_AUDIO) < 0)
@@ -30,25 +30,28 @@ bool AudioHandler::initMusic()
 	return true;
 }
 
-bool AudioHandler::loadMusic()
+// Load game sounds
+bool AudioHandler::loadSounds()
 {
 
 	return false;
 }
 
-void AudioHandler::playMusic()
+//Play a specifik sound
+void AudioHandler::playSound()
 {
 }
 
-void AudioHandler::pauseMusic()
+//Pause a sound
+void AudioHandler::pauseSound()
 {
 }
 
+//Change volume for sounds
 void AudioHandler::changeVolume(int volume)
 {
 	this->EffectVolume = volume;
 }
-
 
 AudioHandler::~AudioHandler()
 {

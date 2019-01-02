@@ -19,8 +19,10 @@ Marker::Marker(std::string filepath, int widthPerSprite, int heightPerSprite, in
 	this->columbs = columbs;
 }
 
+//Load marker image
 bool Marker::loadImage(SDL_Renderer* renderer)
 {
+	//TODO: Make a new image that shows what character is currently marked
 	tex = LoadTextures::loadTexture(renderer, filepath);
 
 	if (tex == NULL) {
@@ -30,6 +32,7 @@ bool Marker::loadImage(SDL_Renderer* renderer)
 	return true;
 }
 
+//Define the size of the image
 bool Marker::defineImage(int columbs)
 {
 	this->columbs = columbs;
@@ -68,8 +71,7 @@ bool Marker::defineImage(int columbs)
 	return true;
 }
 
-
-
+//Returns the sprite rectangle
 SDL_Rect * Marker::getSpriteRect(ColorType color)
 {
 	switch (color) {
@@ -89,17 +91,19 @@ SDL_Rect * Marker::getSpriteRect(ColorType color)
 	return nullptr;
 }
 
+//Set marker color
 void Marker::setColor(ColorType newColor)
 {
 	color = newColor;
 }
 
+//Get the marker color
 ColorType Marker::getColor()
 {
 	return color;
 }
 
-
+//Destructor
 Marker::~Marker()
 {
 	if (tex != NULL)

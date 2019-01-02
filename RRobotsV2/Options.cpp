@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+//TODO: check if going to use anymore or change to toml
+
 Options::Options()
 {
 	filename = "options.ini";

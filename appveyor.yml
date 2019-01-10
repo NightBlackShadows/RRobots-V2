@@ -38,18 +38,18 @@ build:
   verbosity: minimal
 after_build:
   - cmd: 7z a RRobots-%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\RRobotsV2\%CONFIGURATION%\*.exe"
-  - cmd: 7z a "RRobots-$configuration.zip" "%APPVEYOR_BUILD_FOLDER%\RRobotsV2\fonts"
-  - cmd: 7z a "RRobots-$configuration.zip" "%APPVEYOR_BUILD_FOLDER%\RRobotsV2\resources"
-  - cmd: 7z a "RRobots-$configuration.zip" "C:\lib\SDL2_mixer-2.0.2\lib\x86\*.dll"
-  - cmd: 7z a "RRobots-$configuration.zip" "C:\lib\SDL2_ttf-2.0.14\lib\x86\*.dll"
-  - cmd: 7z a "RRobots-$configuration.zip" "C:\lib\SDL2_net-2.0.1\lib\x86\*.dll"
-  - cmd: 7z a "RRobots-$configuration.zip" "C:\lib\SDL2_image-2.0.3\lib\x86\*.dll"
-  - cmd: 7z a "RRobots-$configuration.zip" "C:\lib\SDL2-2.0.8\lib\x86\*.dll"
+  - cmd: 7z a RRobots-%CONFIGURATION%.zip" "%APPVEYOR_BUILD_FOLDER%\RRobotsV2\fonts"
+  - cmd: 7z a RRobots-%CONFIGURATION%.zip" "%APPVEYOR_BUILD_FOLDER%\RRobotsV2\resources"
+  - cmd: 7z a RRobots-%CONFIGURATION%.zip" "C:\lib\SDL2_mixer-2.0.2\lib\x86\*.dll"
+  - cmd: 7z a RRobots-%CONFIGURATION%.zip" "C:\lib\SDL2_ttf-2.0.14\lib\x86\*.dll"
+  - cmd: 7z a RRobots-%CONFIGURATION%.zip" "C:\lib\SDL2_net-2.0.1\lib\x86\*.dll"
+  - cmd: 7z a RRobots-%CONFIGURATION%" "C:\lib\SDL2_image-2.0.3\lib\x86\*.dll"
+  - cmd: 7z a RRobots-%CONFIGURATION%.zip" "C:\lib\SDL2-2.0.8\lib\x86\*.dll"
 
 artifacts:
-- path: RRobots-$configuration.zip
+- path: RRobots-%CONFIGURATION%.zip
   name: Debug
-- path: RRobots-$configuration.zip
+- path: RRobots-%CONFIGURATION%.zip
   name: Release
 
 #on_finish:

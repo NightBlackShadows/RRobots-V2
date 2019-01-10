@@ -8,6 +8,7 @@ Game::Game()
 bool Game::initGame(SDL_Renderer* renderer, Options options)
 {
 	this->options = options;
+	board.initBoard();
 	if (board.loadImages(renderer)) {
 		gl.setEntityBoard(board.getEntityBoard());
 		gl.setGameBoard(board.getGameBoard());
@@ -59,13 +60,18 @@ bool Game::initGame(SDL_Renderer* renderer, Options options)
 	return true;
 }
 
-bool Game::runGame()
+bool Game::isInitialized()
+{
+	return !characters.empty();
+}
+
+State Game::runGame()
 {
 	if (way == WayType::NONE) {
-		SDL_Event e;
+		
 		while(SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_QUIT) {
-				return false;
+				return State::MAIN;
 			}
 			if (e.key.type == SDL_KEYDOWN) {
 				if (e.key.keysym.scancode == SDL_SCANCODE_LEFT || e.key.keysym.scancode == SDL_SCANCODE_A) {
@@ -82,6 +88,10 @@ bool Game::runGame()
 				}
 				else if (e.key.keysym.scancode == SDL_SCANCODE_TAB) {
 					markedCharacter = gl.changeMarked(characters);
+					
+				}
+				else if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
+					return State::MAIN;
 				}
 			}
 		}
@@ -100,13 +110,17 @@ bool Game::runGame()
 		gl.randomizeMarker(&markers);
 	}
 
-	return true;
+	return State::GAME;
 	//sortCharacters();
 }
 
 
 void Game::drawGame(SDL_Renderer* renderer)
 {
+
+
+
+	//To draw behind the map place over
 	//Draws the map
 	for (int y = 0; y < BOARDHEIGHT; y++) {
 		for (int x = 0; x < BOARDWIDTH; x++) {
@@ -117,6 +131,8 @@ void Game::drawGame(SDL_Renderer* renderer)
 	for (int i = 0; i < (int)markers.size(); i++) {
 		SDL_RenderCopyEx(renderer, markers.at(i).getTexture(), markers.at(i).getSpriteRect(gl.getCurrentMarker()), markers.at(i).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 	}
+
+	//Draw over the map and the marker here
 
 	entBoard = gl.getEntityBoard();
 
@@ -147,7 +163,7 @@ Game::~Game()
 	for (int i = 0; i < (int)markers.size(); i++) {
 		markers.at(i).~Marker();
 	}
-	
+
 }
 
 void Game::sortCharacters()

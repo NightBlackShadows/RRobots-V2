@@ -3,18 +3,27 @@
 #ifdef _WIN32
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #endif
 #ifdef __APPLE__ 
+#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
+#include <SDL2_ttf/SDL_image.h>
 #endif
 #ifdef __linux__
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #endif
 #include "Game.h"
 #include "Options.h"
 #include "MusicHandler.h"
 #include "WindowHandler.h"
+#include "MainMenu.h"
+#include "OptionsMenu.h"
 #include "Timer.h"
+#include "State.h"
+
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -27,6 +36,8 @@ SDL_Surface* gHelloWorld = NULL;
 
 SDL_Renderer* renderer = NULL;
 
+MainMenu mainMenu;
+OptionsMenu optionsMenu;
 Game game;
 Options options;
 WindowHandler wh;
@@ -34,7 +45,9 @@ MusicHandler mh;
 bool init();
 void draw();
 void close();
+State switchState();
 
+State current;
 
 int FPS_LOCK = 60;
 
@@ -49,6 +62,7 @@ int main(int argc, char* args[]) {
 	Timer capTimer;
 
 
+
 	if (!init())
 	{
 		printf("Failed to initialize!\n");
@@ -56,22 +70,59 @@ int main(int argc, char* args[]) {
 	else
 	{
 		wh.initWindowHandler(gWindow);
-		if (game.initGame(renderer,options)) {
+		if (game.initGame(renderer, options)) {
 
 			//Start counting frames per second
 			int countedFrames = 0;
 			int SCREEN_TICKS_PER_FRAME = 1000 / FPS_LOCK;
 			fpsTimer.start();
 			while (running) {
-				
+
 				capTimer.start();
-				running = game.runGame();
 
 				//Calculate and correct fps
 				float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
 				if (avgFPS > 2000000)
 				{
 					avgFPS = 0;
+				}
+
+				switch (current) {
+				case State::MAIN:
+					if (mainMenu.isInitialized()) {
+						current = mainMenu.logic();
+						mainMenu.draw(renderer);
+						if (current != State::MAIN) {
+							mainMenu.~MainMenu();
+						}
+					}
+					else {
+						mainMenu.init(renderer, options);
+					}
+					break;
+				case State::OPTIONS:
+					//current = OptionsMenu.logic();
+					//OptionsMenu.draw();
+					break;
+				case State::GAME:
+					if (game.isInitialized()) {
+						current = game.runGame();
+						game.drawGame(renderer);
+						if (current != State::GAME) {
+							running = true;
+							current = State::MAIN;
+							game.~Game();
+							SDL_RenderClear(renderer);
+						}
+					}
+					else {
+						game.initGame(renderer, options);
+					}
+					break;
+				case State::QUIT:
+					running = false;
+				default:
+					break;
 				}
 
 				draw();
@@ -90,8 +141,6 @@ int main(int argc, char* args[]) {
 		}
 	}
 
-
-
 	//Free resources and close SDL
 	close();
 
@@ -104,7 +153,7 @@ void draw() {
 
 	//SDL_RenderClear(renderer);
 	//Update screen
-	game.drawGame(renderer);
+	//game.drawGame(renderer);
 
 	SDL_RenderPresent(renderer);
 
@@ -167,10 +216,13 @@ bool init() {
 				else {
 					wh.setFullscreen(options.getFullscreen());
 				}
+				if (TTF_Init()) {
+					printf("SDL_ttf could not initialize! ttf error: %s", TTF_GetError());
+				}
 			}
 		}
 	}
-
+	current = State::MAIN;
 	return success;
 }
 
@@ -179,7 +231,6 @@ void close() {
 	//SDL_DestroyTexture(gTexture);
 	//gTexture = NULL;
 
-	game.~Game();
 	options.~Options();
 	mh.~MusicHandler();
 

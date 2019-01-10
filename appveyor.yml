@@ -37,7 +37,7 @@ build:
   project: RRobotsV2/RRobotsV2.sln
   verbosity: minimal
 after_build:
-  - cmd: 7z a "RRobots-$configuration.zip" "%APPVEYOR_BUILD_FOLDER%\RRobotsV2\$configuration\*.exe"
+  - cmd: 7z a RRobots-%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\RRobotsV2\%CONFIGURATION%\*.exe"
   - cmd: 7z a "RRobots-$configuration.zip" "%APPVEYOR_BUILD_FOLDER%\RRobotsV2\fonts"
   - cmd: 7z a "RRobots-$configuration.zip" "%APPVEYOR_BUILD_FOLDER%\RRobotsV2\resources"
   - cmd: 7z a "RRobots-$configuration.zip" "C:\lib\SDL2_mixer-2.0.2\lib\x86\*.dll"

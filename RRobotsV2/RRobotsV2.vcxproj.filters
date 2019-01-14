@@ -43,12 +43,6 @@
     <Filter Include="Source Files\Audio">
       <UniqueIdentifier>{b5203503-d6ad-4a55-a6f2-aa515d5fb554}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enums">
-      <UniqueIdentifier>{8083e208-b5aa-41a7-bf99-cdc1b4a47925}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enums">
-      <UniqueIdentifier>{f863757b-3b76-4226-adac-4ef1d5fe2ab0}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,11 +54,23 @@
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="ColorType.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Marker.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TileType.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="WayType.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Menus</Filter>
     </ClCompile>
     <ClCompile Include="loadTextures.cpp">
       <Filter>Source Files</Filter>
@@ -96,24 +102,6 @@
     <ClCompile Include="MusicHandler.cpp">
       <Filter>Source Files\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Gametext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WayType.cpp">
-      <Filter>Source Files\Enums</Filter>
-    </ClCompile>
-    <ClCompile Include="TileType.cpp">
-      <Filter>Source Files\Enums</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorType.cpp">
-      <Filter>Source Files\Enums</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Source Files\Enums</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -122,11 +110,20 @@
     <ClInclude Include="Character.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="ColorType.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Marker.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TileType.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="loadTextures.h">
       <Filter>Header Files</Filter>
@@ -143,6 +140,9 @@
     <ClInclude Include="Options.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WayType.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
     <ClInclude Include="FileHandler.h">
       <Filter>Header Files\Handlers</Filter>
     </ClInclude>
@@ -157,27 +157,6 @@
     </ClInclude>
     <ClInclude Include="AudioHandler.h">
       <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gametext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="WayType.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="TileType.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorType.h">
-      <Filter>Header Files\Enums</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@ LoadTextures::~LoadTextures()
 {
 }
 
+//Check and load texture
 SDL_Texture* LoadTextures::loadTexture(SDL_Renderer* renderer, std::string filepath) {
 	SDL_Texture* newTexture = NULL;
 	SDL_Surface* surface = IMG_Load(filepath.c_str());

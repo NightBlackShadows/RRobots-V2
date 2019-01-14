@@ -7,12 +7,14 @@ FileHandler::FileHandler()
 {
 }
 
+//Check if file excists
 bool FileHandler::fileExicts(const std::string& name)
 {
 	struct stat buffer;
 	return (stat(name.c_str(), &buffer) == 0);
 }
 
+//Write file
 bool FileHandler::writeToFile(std::string filename, std::string text)
 {
 	std::fstream fileStream;

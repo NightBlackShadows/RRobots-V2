@@ -1,12 +1,13 @@
 #include "Character.h"
 #include "LoadTextures.h"
 
-
+//Constructor of a character entity
 Character::Character(std::string filepath) : Entity::Entity(filepath)
 {
 	marked = false;
 }
 
+//Constructor for a character entity that is a sprite
 Character::Character(std::string filepath, int columbs, int rows) : Entity::Entity(filepath)
 {
 	this->columbs = columbs;
@@ -16,6 +17,7 @@ Character::Character(std::string filepath, int columbs, int rows) : Entity::Enti
 	frame = 0;
 }
 
+//Define how many rows and columns the sprite is
 bool Character::defineImage(int columbs, int rows)
 {
 	this->columbs = columbs;
@@ -51,8 +53,7 @@ bool Character::defineImage(int columbs, int rows)
 	return true;
 }
 
-
-
+//Load a image for the entity
 bool Character::loadImage(SDL_Renderer* renderer) {
 	Entity::tex = LoadTextures::loadTexture(renderer, Entity::filepath);
 
@@ -67,26 +68,31 @@ bool Character::loadImage(SDL_Renderer* renderer) {
 	return true;
 }
 
+//Set the "marker" color for the entity
 void Character::setColor(int color)
 {
 	this->color = static_cast<ColorType>(color);
 }
 
+//Check if character is marked
 bool Character::getMarked()
 {
 	return marked;
 }
 
+//Set the character to marked
 void Character::setMarked(bool marked)
 {
 	this->marked = marked;
 }
 
+//Get the texture of the character
 SDL_Texture * Character::getTexture()
 {
 	return tex;
 }
 
+//Get the sprite rectangle of the character
 SDL_Rect * Character::getSpriteRect(WayType wayType)
 {
 	switch (wayType) {
@@ -131,29 +137,32 @@ SDL_Rect * Character::getSpriteRect(WayType wayType)
 	}
 }
 
+//Get the current position of the character
 SDL_Rect * Character::getPositionRect()
 {
 	return &position;
 }
 
+//Get the color of the character
 ColorType Character::getColor()
 {
 	return color;
 }
 
+//Compere the position between two characters
 bool Character::compare(Character other)
 {
 	SDL_Rect otherRect = *other.getPositionRect();
 	return (position.y > otherRect.y);
 }
 
+//Reset the marked status
 void Character::resetSprite()
 {
 	marked = false;
 }
 
-
-
+//Destructor
 Character::~Character()
 {
 	if (tex != NULL)

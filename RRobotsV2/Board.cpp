@@ -1,19 +1,19 @@
 #include "Board.h"
 #include "LoadTextures.h"
 
-
+//Constructor
 Board::Board()
 {
 	//gameBoard = new std::vector< std::vector<TileType> >(BOARDHEIGHT, std::vector<TileType>(BOARDWIDTH));
 	std::vector< std::vector<int> > gBoard{
 		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },			//0 Ingen ruta
-	{ 0,1,1,1,1,3,1,1,1,1,1,1,1,3,1,1,1,0 },			//1 Utan vägg
-	{ 0,1,1,1,1,1,1,6,1,1,1,1,1,1,1,1,1,0 },			//2 EN vägg UPPE 
-	{ 0,1,1,1,1,1,1,1,1,1,1,1,7,1,1,1,1,0 },			//3 EN vägg till VÄNSTER
-	{ 0,1,4,1,1,1,1,1,1,1,1,1,1,1,4,1,1,0 },			//4 HÖRN UPPE till HÖGER 
-	{ 0,1,1,1,1,1,5,1,1,1,1,6,1,1,1,1,1,0 },			//5 HÖRN UPPE till VÄNSTER
-	{ 0,1,1,7,1,1,1,1,7,1,1,1,1,5,1,1,1,0 },			//6 HÖRN NERE till VÄNSTER 
-	{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,0 },			//7 HÖRN NERE till HÖGER
+	{ 0,1,1,1,1,3,1,1,1,1,1,1,1,3,1,1,1,0 },			//1 Utan vÃ¤gg
+	{ 0,1,1,1,1,1,1,6,1,1,1,1,1,1,1,1,1,0 },			//2 EN vÃ¤gg UPPE 
+	{ 0,1,1,1,1,1,1,1,1,1,1,1,7,1,1,1,1,0 },			//3 EN vÃ¤gg till VÃ„NSTER
+	{ 0,1,4,1,1,1,1,1,1,1,1,1,1,1,4,1,1,0 },			//4 HÃ–RN UPPE till HÃ–GER 
+	{ 0,1,1,1,1,1,5,1,1,1,1,6,1,1,1,1,1,0 },			//5 HÃ–RN UPPE till VÃ„NSTER
+	{ 0,1,1,7,1,1,1,1,7,1,1,1,1,5,1,1,1,0 },			//6 HÃ–RN NERE till VÃ„NSTER 
+	{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,0 },			//7 HÃ–RN NERE till HÃ–GER
 	{ 0,2,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0 },
 	{ 0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0 },
 	{ 0,1,1,1,1,1,1,1,1,1,1,1,6,1,1,1,2,0 },
@@ -54,13 +54,13 @@ Board::Board()
 bool Board::initBoard() {
 	std::vector< std::vector<int> > gBoard{
 		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },			//0 Ingen ruta
-	{ 0,1,1,1,1,3,1,1,1,1,1,1,1,3,1,1,1,0 },			//1 Utan vägg
-	{ 0,1,1,1,1,1,1,6,1,1,1,1,1,1,1,1,1,0 },			//2 EN vägg UPPE 
-	{ 0,1,1,1,1,1,1,1,1,1,1,1,7,1,1,1,1,0 },			//3 EN vägg till VÄNSTER
-	{ 0,1,4,1,1,1,1,1,1,1,1,1,1,1,4,1,1,0 },			//4 HÖRN UPPE till HÖGER 
-	{ 0,1,1,1,1,1,5,1,1,1,1,6,1,1,1,1,1,0 },			//5 HÖRN UPPE till VÄNSTER
-	{ 0,1,1,7,1,1,1,1,7,1,1,1,1,5,1,1,1,0 },			//6 HÖRN NERE till VÄNSTER 
-	{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,0 },			//7 HÖRN NERE till HÖGER
+	{ 0,1,1,1,1,3,1,1,1,1,1,1,1,3,1,1,1,0 },			//1 Utan vÃ¤gg
+	{ 0,1,1,1,1,1,1,6,1,1,1,1,1,1,1,1,1,0 },			//2 EN vÃ¤gg UPPE 
+	{ 0,1,1,1,1,1,1,1,1,1,1,1,7,1,1,1,1,0 },			//3 EN vÃ¤gg till VÃ„NSTER
+	{ 0,1,4,1,1,1,1,1,1,1,1,1,1,1,4,1,1,0 },			//4 HÃ–RN UPPE till HÃ–GER 
+	{ 0,1,1,1,1,1,5,1,1,1,1,6,1,1,1,1,1,0 },			//5 HÃ–RN UPPE till VÃ„NSTER
+	{ 0,1,1,7,1,1,1,1,7,1,1,1,1,5,1,1,1,0 },			//6 HÃ–RN NERE till VÃ„NSTER 
+	{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,0 },			//7 HÃ–RN NERE till HÃ–GER
 	{ 0,2,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0 },
 	{ 0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0 },
 	{ 0,1,1,1,1,1,1,1,1,1,1,1,6,1,1,1,2,0 },
@@ -99,6 +99,7 @@ bool Board::initBoard() {
 	return true;
 }
 
+//decunstruct the all the images and boards
 Board::~Board()
 {
 	//Free loaded image
@@ -118,18 +119,23 @@ Board::~Board()
 	GameBoard_ButtomRight = NULL;
 	SDL_DestroyTexture(GameBoard_ButtomLeft);
 	GameBoard_ButtomLeft = NULL;
+	gameBoard.clear();
+	entityBoard.clear();
 }
 
+//Get the current gameboard
 std::vector< std::vector<int> > Board::getGameBoard()
 {
 	return Board::gameBoard;
 }
 
+//Get the current entity board
 std::vector< std::vector<int> > Board::getEntityBoard()
 {
 	return Board::entityBoard;
 }
 
+//Set the gameboard 
 void Board::setGameBoard(std::vector< std::vector<int> > Board)
 {
 	for (int y = 1; y < BOARDHEIGHT; y++) {
@@ -139,6 +145,7 @@ void Board::setGameBoard(std::vector< std::vector<int> > Board)
 	}
 }
 
+//Sets a complete board
 void Board::setEntityBoard(std::vector< std::vector<int> > board)
 {
 	for (int y = 1; y < BOARDHEIGHT -1; y++) {
@@ -148,6 +155,7 @@ void Board::setEntityBoard(std::vector< std::vector<int> > board)
 	}
 }
 
+//Returns what image is on the board
 SDL_Texture* Board::getImageFromMap(int x, int y)
 {
 	switch (gameBoard[y][x]) {
@@ -172,6 +180,8 @@ SDL_Texture* Board::getImageFromMap(int x, int y)
 	}
 }
 
+//Get the rectangle of the board piece
+//Todo read the actual value of the piece
 SDL_Rect* Board::getRectangle(int x, int y)
 {
 	rectangle.w = 32;
@@ -182,6 +192,7 @@ SDL_Rect* Board::getRectangle(int x, int y)
 	return &rectangle;
 }
 
+//Load the images that are used on the board
 bool Board::loadImages(SDL_Renderer* renderer)
 {
 	//Load splash image
@@ -194,6 +205,7 @@ bool Board::loadImages(SDL_Renderer* renderer)
 	GameBoard_ButtomRight = LoadTextures::loadTexture(renderer, "resources/Map/CornerGimpRutaBR.png");
 	GameBoard_ButtomLeft = LoadTextures::loadTexture(renderer, "resources/Map/CornerGimpRutaBL.png");
 
+	//Check if all images are loaded correctly
 	if (GameBoard_brick == NULL) {
 		return false;
 	}
@@ -230,6 +242,7 @@ bool Board::loadImages(SDL_Renderer* renderer)
 	return true;
 }
 
+//returns a string of the board
 std::string Board::toString() {
 	std::string buffer;
 

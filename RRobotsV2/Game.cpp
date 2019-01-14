@@ -5,6 +5,7 @@ Game::Game()
 {
 }
 
+//Initialize game
 bool Game::initGame(SDL_Renderer* renderer, Options options)
 {
 	this->options = options;
@@ -65,6 +66,8 @@ bool Game::isInitialized()
 	return !characters.empty();
 }
 
+
+//Run game instance
 State Game::runGame()
 {
 	if (way == WayType::NONE) {
@@ -114,7 +117,7 @@ State Game::runGame()
 	//sortCharacters();
 }
 
-
+//Draw current game
 void Game::drawGame(SDL_Renderer* renderer)
 {
 
@@ -153,6 +156,7 @@ void Game::drawGame(SDL_Renderer* renderer)
 	SDL_RenderCopyEx(renderer, characters.at(markedCharacter).getTexture(), characters.at(markedCharacter).getSpriteRect(way), characters.at(markedCharacter).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
 }
 
+//Destructor, clean memory
 Game::~Game()
 {
 	board.~Board();
@@ -166,6 +170,8 @@ Game::~Game()
 
 }
 
+//Sort character for drawing
+//TODO: check if in use
 void Game::sortCharacters()
 {	
 	//Character temp("");

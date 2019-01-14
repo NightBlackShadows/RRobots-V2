@@ -17,7 +17,7 @@ This can load WAVE, MOD, MIDI, OGG, MP3 and FLAC
 bool MusicHandler::loadMusic()
 {
 	int numFiles = 3;
-	//get something to check the map "resources/Music" for all files in there and load them.
+	//TODO: get something to check the map "resources/Music" for all files in there and load them.
 
 	for (int i = 0; i < numFiles; i++) {
 		
@@ -66,7 +66,7 @@ void MusicHandler::playMusic()
 {
 	if (!loaded) {
 		// the randomizer will change. just boring listening to the same song all the time
-		if (Mix_PlayMusic(songs.at(rand()%3), 1) == -1) {
+		if (Mix_PlayMusic(songs.at(rand()%songs.size()), 1) == -1) {
 			printf("Mix_PlayMusic: %s\n", Mix_GetError());
 			// well, there's no music, but most games don't break without music...
 		}
@@ -80,12 +80,14 @@ void MusicHandler::playMusic()
 	}
 }
 
+
 void MusicHandler::pauseMusic()
 {
 	// pause music
 	Mix_PauseMusic();
 }
 
+//Change volume
 void MusicHandler::changeVolume(int volume)
 {
 	// set music volume to volume

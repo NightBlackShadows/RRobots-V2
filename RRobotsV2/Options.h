@@ -3,7 +3,8 @@
 #ifdef _WIN32
 #include <SDL_image.h>
 #endif
-#ifdef __APPLE__ 
+#ifdef __APPLE__
+#include "SDL2_image/SDL_image.h"
 #endif
 #ifdef __linux__
 #include <SDL2/SDL_image.h>

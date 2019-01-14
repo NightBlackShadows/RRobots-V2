@@ -12,12 +12,13 @@ struct tile_pos
 	int type;
 }; typedef struct tile_pos TilePos;
 
-
+//Constructor and start a randomizer
 GameLogic::GameLogic()
 {
 	srand((unsigned)time(NULL));
 }
 
+//Randomize position of the characters
 void GameLogic::randomizeCharacterPos(std::vector<Character>* characters)
 {
 	int x, y;
@@ -34,6 +35,7 @@ void GameLogic::randomizeCharacterPos(std::vector<Character>* characters)
 	}
 }
 
+//Randomize the markers position
 void GameLogic::randomizeMarker(std::vector<Marker>* markers)
 {
 	TilePos tilePos[50];
@@ -82,6 +84,7 @@ void GameLogic::randomizeMarker(std::vector<Marker>* markers)
 	}
 }
 
+//Change current marked character
 int GameLogic::changeMarked(std::vector<Character> &characters) {
 	int x = 0;
 	for (int i = 0; i < (int)characters.size(); i++) {
@@ -105,26 +108,31 @@ int GameLogic::changeMarked(std::vector<Character> &characters) {
 	return x;
 }
 
+//Get entity board
 std::vector<std::vector<int>> GameLogic::getEntityBoard()
 {
 	return entityBoard;
 }
 
+//Get what character is marked
 ColorType GameLogic::getCurrentMarker()
 {
 	return currentMarker;
 }
 
+//Set what gameboard shall be shown
 void GameLogic::setGameBoard(std::vector<std::vector<int>> gameBoard)
 {
 	this->gameBoard = gameBoard;
 }
 
+//Set entity board (Character posistions)
 void GameLogic::setEntityBoard(std::vector<std::vector<int>> entityBoard)
 {
 	this->entityBoard = entityBoard;
 }
 
+//Reset entity board
 void GameLogic::resetEntityBoard(std::vector<Character> &characters)
 {
 	entityBoard = orgEntityBoard;
@@ -135,6 +143,7 @@ void GameLogic::resetEntityBoard(std::vector<Character> &characters)
 	}
 }
 
+//Move a character
 bool GameLogic::moveCharacter(Character &character,SDL_Rect dest)
 {
 	SDL_Rect charPos = *character.getPositionRect();
@@ -163,6 +172,7 @@ bool GameLogic::moveCharacter(Character &character,SDL_Rect dest)
 	return true;
 }
 
+//Check if the correct character collides with the marker
 bool GameLogic::markerCollision(Character &character, Marker &marker)
 {
 	if (character.getMapXPos() == marker.getMapXPos() &&
@@ -174,6 +184,7 @@ bool GameLogic::markerCollision(Character &character, Marker &marker)
 	return false;
 }
 
+//Detect collision of characters and walls
 SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayType way)
 {
 	int x, y;
@@ -298,6 +309,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 	}
 }
 
+//Print a string of current boards DEBUG
 void GameLogic::printBoards()
 {
 	printf("\n");
@@ -314,6 +326,7 @@ GameLogic::~GameLogic()
 {
 }
 
+//Back upp entity board, to reset board if player regrets or wants to try again
 void GameLogic::setBackupEntityBoard()
 {
 	orgEntityBoard = entityBoard;

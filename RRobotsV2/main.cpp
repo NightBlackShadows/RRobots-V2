@@ -214,7 +214,7 @@ bool init() {
 					success = false;
 				}
 				else {
-					wh.setFullscreen(options.getFullscreen());
+					wh.switchFullscreen(options.getFullscreen());
 				}
 				if (TTF_Init()) {
 					printf("SDL_ttf could not initialize! ttf error: %s", TTF_GetError());

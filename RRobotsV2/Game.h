@@ -5,18 +5,20 @@
 #include "Marker.h"
 #include "Options.h"
 #include "WayType.h"
+#include "State.h"
 #include <vector>
 class Game
 {
 public:
 	Game();
 	bool initGame(SDL_Renderer* renderer,Options options);
-
-	bool runGame();
+	bool isInitialized();
+	State runGame();
 
 	void drawGame(SDL_Renderer* renderer);
 	~Game();
 private:
+	SDL_Event e;
 	SDL_Rect dest;
 	void sortCharacters();
 	std::vector<std::vector<int>> entBoard;

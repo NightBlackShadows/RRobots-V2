@@ -19,6 +19,7 @@ class Board
 {
 public:
 	Board();
+	bool initBoard();
 	bool loadImages(SDL_Renderer* renderer);
 	std::vector< std::vector<int> > getGameBoard();
 	std::vector< std::vector<int> > getEntityBoard();

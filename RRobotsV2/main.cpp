@@ -42,6 +42,8 @@ Game game;
 Options options;
 WindowHandler wh;
 MusicHandler mh;
+AudioHandler ah;
+SDL_DisplayMode *currentDisp;
 bool init();
 void draw();
 void close();
@@ -69,7 +71,7 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		wh.initWindowHandler(gWindow);
+		//wh.initWindowHandler(gWindow,&options);
 		if (game.initGame(renderer, options)) {
 
 			//Start counting frames per second
@@ -94,15 +96,25 @@ int main(int argc, char* args[]) {
 						mainMenu.draw(renderer);
 						if (current != State::MAIN) {
 							mainMenu.~MainMenu();
+							SDL_RenderClear(renderer);
 						}
 					}
 					else {
-						mainMenu.init(renderer, options);
+						mainMenu.init(renderer, &options);
 					}
 					break;
 				case State::OPTIONS:
-					//current = OptionsMenu.logic();
-					//OptionsMenu.draw();
+					if (optionsMenu.isInitialized()) {
+						current = optionsMenu.logic();
+						optionsMenu.draw(renderer);
+						if (current != State::OPTIONS) {
+							optionsMenu.~OptionsMenu();
+							SDL_RenderClear(renderer);
+						}
+					}
+					else {
+						optionsMenu.init(renderer, &options, &wh, &ah, &mh);
+					}
 					break;
 				case State::GAME:
 					if (game.isInitialized()) {
@@ -176,14 +188,27 @@ bool init() {
 	{
 		if (mh.initMusic()) {
 			if (mh.loadMusic()) {
-				mh.changeVolume(50);
+				if (!options.getMute()) {
+					mh.changeVolume(50);
+				}
+				else {
+					mh.changeVolume(0);
+				}
 				mh.playMusic();
 			}
 			else {
 				printf("Some or all music could not be loaded\n");
 			}
 		}
-
+		if (ah.initSounds()) {
+			if (ah.loadSounds()) {
+				//ah.changeVolume(50);
+				//ah.playMusic();
+			}
+			else {
+				printf("Some or all music could not be loaded\n");
+			}
+		}
 		//Create window
 		gWindow = SDL_CreateWindow("RRobot 2.0", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, options.getWidth(), options.getHeight(), SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
@@ -193,7 +218,7 @@ bool init() {
 		}
 		else
 		{
-			wh.initWindowHandler(gWindow);
+			wh.initWindowHandler(gWindow,&options);
 			//Create renderer for window
 			renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
 			if (renderer == NULL)
@@ -230,7 +255,7 @@ void close() {
 	//Free loaded image
 	//SDL_DestroyTexture(gTexture);
 	//gTexture = NULL;
-
+	options.saveOptions();
 	options.~Options();
 	mh.~MusicHandler();
 

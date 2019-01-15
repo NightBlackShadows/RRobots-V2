@@ -16,14 +16,14 @@ class MainMenu
 {
 public:
 	MainMenu();
-	bool init(SDL_Renderer *renderer, Options options);
+	bool init(SDL_Renderer *renderer, Options* options);
 	bool isInitialized();
 	State logic();
 	void draw(SDL_Renderer* renderer);
 	~MainMenu();
 private:
 	SDL_Event e;
-	Options options;
+	Options* options;
 	std::vector<Gametext> menues;
 };
 

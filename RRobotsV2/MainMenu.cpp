@@ -6,7 +6,7 @@ MainMenu::MainMenu()
 {
 }
 
-bool MainMenu::init(SDL_Renderer *renderer, Options options)
+bool MainMenu::init(SDL_Renderer *renderer, Options* options)
 {
 	//TODO: load a background image or leave it as black
 	//TODO: Load a title, Image or written text?

@@ -9,7 +9,9 @@
 #ifdef __linux__
 #include <SDL2/SDL_image.h>
 #endif
+#include <vector>
 #include "FileHandler.h"
+
 class Options
 {
 public:

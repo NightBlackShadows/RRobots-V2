@@ -26,7 +26,6 @@ public:
 	void fillDisplayModes();
 	State logic();
 	void draw(SDL_Renderer* renderer);
-
 	~OptionsMenu();
 
 private:

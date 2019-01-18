@@ -7,7 +7,7 @@
 
 Gametext::Gametext(std::string text)
 {
-	srand(time((time_t)NULL));
+	srand(time(NULL));
 	this->text = text;
 
 	Rect.x = 0;
@@ -90,5 +90,5 @@ void Gametext::makeTexture()
 Gametext::~Gametext()
 {
 	text.clear();
-	
+
 }

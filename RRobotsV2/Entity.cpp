@@ -63,8 +63,7 @@ void Entity::setNewPosition(int x, int y)
 //Desturctor
 Entity::~Entity()
 {
-	SDL_DestroyTexture(tex);
-	tex = NULL;
-	filepath = "";
+	//SDL_DestroyTexture(tex);
+	//tex = NULL;
+	//filepath.clear();
 }
-

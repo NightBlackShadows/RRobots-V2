@@ -2,7 +2,7 @@
 #ifdef _WIN32
 #include <SDL_image.h>
 #endif
-#ifdef __APPLE__ 
+#ifdef __APPLE__
 #include <SDL2_image/SDL_image.h>
 #endif
 #ifdef __linux__
@@ -38,8 +38,7 @@ private:
 	std::vector<std::vector<int>> gameBoard;
 	std::vector<std::vector<int>> entityBoard;
 	std::vector<std::vector<int>> orgEntityBoard;
-	
+
 	ColorType currentMarker;
 	Options options;
 };
-

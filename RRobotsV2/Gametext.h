@@ -16,15 +16,16 @@ class Gametext
 {
 public:
 	Gametext(std::string text);
-	bool init(std::string font);
+	bool init(std::string font, SDL_Renderer *renderer);
 	void setTextRect(int x, int y, int width, int height);
 	std::string getText();
 	void setPos(int x, int y); 
+	void setNewText(std::string newText);
 	void setTextColor();
 	void setRandTextColor();
 	SDL_Rect* getPos();
 	SDL_Texture* getTexture();
-	void makeTexture(SDL_Renderer *renderer);
+	void makeTexture();
 	~Gametext();
 private:
 	std::string text;
@@ -33,5 +34,6 @@ private:
 	SDL_Rect Rect;
 	SDL_Texture *tex;
 	SDL_Surface *screenSurface;
+	SDL_Renderer* renderer;
 };
 

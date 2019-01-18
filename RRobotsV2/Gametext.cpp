@@ -7,7 +7,7 @@
 
 Gametext::Gametext(std::string text)
 {
-	srand(time(0));
+	srand(time((time_t)NULL));
 	this->text = text;
 
 	Rect.x = 0;
@@ -16,9 +16,9 @@ Gametext::Gametext(std::string text)
 	Rect.h = 0;
 }
 
-bool Gametext::init(std::string fontLocation)
+bool Gametext::init(std::string fontLocation, SDL_Renderer *renderer)
 {
-
+	this->renderer = renderer;
 	font = TTF_OpenFont(fontLocation.c_str(), 24);
 	if (font == NULL)
 	{
@@ -50,6 +50,13 @@ void Gametext::setPos(int x, int y)
 	Rect.y = y;
 }
 
+void Gametext::setNewText(std::string newText)
+{
+	text = newText;
+	SDL_RenderClear(renderer);
+	makeTexture();
+}
+
 void Gametext::setTextColor()
 {
 	Color.r = 255;
@@ -74,7 +81,7 @@ SDL_Texture* Gametext::getTexture()
 {
 	return tex;
 }
-void Gametext::makeTexture(SDL_Renderer *renderer)
+void Gametext::makeTexture()
 {
 	screenSurface = TTF_RenderText_Solid(font, text.c_str(), Color);
 	tex = SDL_CreateTextureFromSurface(renderer, screenSurface);

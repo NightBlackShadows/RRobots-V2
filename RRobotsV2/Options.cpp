@@ -15,7 +15,8 @@ Options::Options()
 
 		screenWidth = 800;
 		screenHeight = 600;
-		volume = 50;
+		musicVolume = 50;
+		soundVolume = 50;
 		fpsLock = 60;
 		mute = false;
 		fullscreen = false;
@@ -48,14 +49,32 @@ bool Options::loadOptions()
 	return true;
 }
 
-int Options::getVolume()
+int Options::getMusicVolume()
 {
-	return volume;
+	return musicVolume;
+}
+
+int Options::getSoundVolume()
+{
+	return soundVolume;
 }
 
 bool Options::getMute()
 {
 	return mute;
+}
+
+std::string Options::getMuteString()
+{
+	switch (mute)
+	{
+	case true:
+		return "true";
+	default:
+		return "false";
+		break;
+	}
+	return "NaN";
 }
 
 int Options::getWidth()
@@ -78,6 +97,50 @@ bool Options::getFullscreen()
 	return fullscreen;
 }
 
+std::string Options::getFullscreenString()
+{
+	switch (fullscreen)
+	{
+	case true:
+		return "true";
+	default:
+		return "false";
+		break;
+	}
+	return "NaN";
+}
+
+void Options::setResolution(int w, int h)
+{
+	screenWidth = w;
+	screenHeight = h;
+}
+
+void Options::setMusicVolume(int volume)
+{
+	musicVolume = volume;
+}
+
+void Options::setSoundVolume(int volume)
+{
+	soundVolume = volume;
+}
+
+void Options::setMute(bool state)
+{
+	mute = state;
+}
+
+void Options::setFullscreen(bool state)
+{
+	fullscreen = state;
+}
+
+void Options::setFPSLock(int lock)
+{
+	fpsLock = lock;
+}
+
 void Options::saveOptions()
 {
 	std::stringstream options;
@@ -86,7 +149,8 @@ void Options::saveOptions()
 	options << "ScreenHeight=" << std::to_string(screenHeight) << std::endl;
 	options << "Fullscreen=" << std::to_string(fullscreen) << std::endl;
 	options << "FPSLock=" << std::to_string(fpsLock) << std::endl;
-	options << "Volume=" << std::to_string(volume) << std::endl;
+	options << "MusicVolume=" << std::to_string(musicVolume) << std::endl;
+	options << "SoundVolume=" << std::to_string(soundVolume) << std::endl;
 	options << "Mute=" << std::to_string(mute) << std::endl;
 	fileHandler.writeToFile(filename, options.str());
 	options.clear();
@@ -110,8 +174,11 @@ void Options::loadValues(std::string key, std::string value)
 	else if (key == "FPSLock") {
 		fpsLock = std::stoi(value);
 	}
-	else if (key == "Volume") {
-		volume = std::stoi(value);
+	else if (key == "MusicVolume") {
+		musicVolume = std::stoi(value);
+	}
+	else if (key == "SoundVolume") {
+		soundVolume = std::stoi(value);
 	}
 	else if (key == "Mute") {
 		mute = std::stoi(value);

@@ -102,7 +102,7 @@ int GameLogic::changeMarked(std::vector<Character> &characters) {
 		}
 		if (i == (int)characters.size() - 1) {
 			characters[0].setMarked(true);
-			
+
 		}
 	}
 	return x;
@@ -166,7 +166,7 @@ bool GameLogic::moveCharacter(Character &character,SDL_Rect dest)
 		if (dest.x == charPos.x && dest.y == charPos.y) {
 			return false;
 		}
-	
+
 		character.setNewPosition(newX, newY);
 	}
 	return true;
@@ -197,7 +197,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 			if (gameBoard[y][x - 1] == 0 ||	gameBoard[y][x - 0] == 3 ||
 				gameBoard[y][x - 1] == 4 ||	gameBoard[y][x - 0] == 5 ||
 				gameBoard[y][x - 0] == 6 ||	gameBoard[y][x - 1] == 7 ||
-				(entityBoard[y][x - 1] >= 2 && entityBoard[y][x - 1] <= 6)) 
+				(entityBoard[y][x - 1] >= 2 && entityBoard[y][x - 1] <= 6))
 			{
 				if (x != character.getMapXPos() || y != character.getMapYPos()) {
 					entityBoard[y][x] = entityBoard[character.getMapYPos()][character.getMapXPos()];
@@ -238,7 +238,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 			}
 			else {
 			}
-			x++; 
+			x++;
 			if (x >= 16) {
 				entityBoard[y][x] = entityBoard[character.getMapYPos()][character.getMapXPos()];
 				entityBoard[character.getMapYPos()][character.getMapXPos()] = 0;
@@ -253,7 +253,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 			if (gameBoard[y - 1][x] == 0 ||	gameBoard[y + 0][x] == 2 ||
 				gameBoard[y + 0][x] == 4 ||	gameBoard[y + 0][x] == 5 ||
 				gameBoard[y - 1][x] == 6 ||	gameBoard[y - 1][x] == 7 ||
-				(entityBoard[y - 1][x] >= 2 && entityBoard[y - 1][x] <= 6)) 
+				(entityBoard[y - 1][x] >= 2 && entityBoard[y - 1][x] <= 6))
 			{
 				if (x != character.getMapXPos() || y != character.getMapYPos()) {
 					entityBoard[y][x] = entityBoard[character.getMapYPos()][character.getMapXPos()];
@@ -281,7 +281,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 			if (gameBoard[y + 1][x] == 0 ||	gameBoard[y + 1][x] == 2 ||
 				gameBoard[y + 1][x] == 4 ||	gameBoard[y + 1][x] == 5 ||
 				gameBoard[y + 0][x] == 6 ||	gameBoard[y + 0][x] == 7 ||
-				(entityBoard[y + 1][x] >= 2 && entityBoard[y + 1][x] <= 6)) 
+				(entityBoard[y + 1][x] >= 2 && entityBoard[y + 1][x] <= 6))
 			{
 				if (x != character.getMapXPos() || y != character.getMapYPos()) {
 					entityBoard[y][x] = entityBoard[character.getMapYPos()][character.getMapXPos()];
@@ -324,6 +324,9 @@ void GameLogic::printBoards()
 
 GameLogic::~GameLogic()
 {
+	gameBoard.clear();
+	entityBoard.clear();
+	orgEntityBoard.clear();
 }
 
 //Back upp entity board, to reset board if player regrets or wants to try again

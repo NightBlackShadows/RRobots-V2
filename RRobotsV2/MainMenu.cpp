@@ -19,15 +19,13 @@ bool MainMenu::init(SDL_Renderer *renderer, Options* options)
 	menues.push_back(Gametext("Quit"));
 
 //	for (Gametext g: menues) 
-	for(int i = 0; i < menues.size();i++){
-		menues[i].init("fonts/LCD_Solid.ttf");
+	for(unsigned int i = 0; i < menues.size();i++){
+		menues[i].init("fonts/LCD_Solid.ttf",renderer);
 		menues[i].setRandTextColor();
 		menues[i].setTextRect((i + 1) * 29, (i + 1) * 29,
 			menues[i].getText().length() * 24, 27);
-		menues[i].makeTexture(renderer);
+		menues[i].makeTexture();
 	}
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	return false;
 }
 
@@ -64,8 +62,6 @@ State MainMenu::logic()
 				}
 				else if (mouseX >= menues[2].getPos()->x && mouseX <= (menues[2].getPos()->x + menues[2].getPos()->w) && mouseY >= menues[2].getPos()->y && mouseY <= (menues[2].getPos()->y + menues[2].getPos()->h))
 				{
-					printf("Not implemented yet!\n");
-					return State::MAIN;
 					return State::OPTIONS;
 				}
 				else if (mouseX >= menues[3].getPos()->x && mouseX <= (menues[3].getPos()->x + menues[3].getPos()->w) && mouseY >= menues[3].getPos()->y && mouseY <= (menues[3].getPos()->y + menues[3].getPos()->h))

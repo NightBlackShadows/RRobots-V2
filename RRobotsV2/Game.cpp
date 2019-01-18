@@ -71,7 +71,7 @@ bool Game::isInitialized()
 State Game::runGame()
 {
 	if (way == WayType::NONE) {
-		
+
 		while(SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_QUIT) {
 				return State::MAIN;
@@ -91,7 +91,6 @@ State Game::runGame()
 				}
 				else if (e.key.keysym.scancode == SDL_SCANCODE_TAB) {
 					markedCharacter = gl.changeMarked(characters);
-					
 				}
 				else if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
 					return State::MAIN;
@@ -108,7 +107,7 @@ State Game::runGame()
 			dest.x = 0;
 		}
 	}
-	
+
 	if (gl.markerCollision(characters.at(markedCharacter), markers.at(0))) {
 		gl.randomizeMarker(&markers);
 	}
@@ -161,19 +160,18 @@ Game::~Game()
 {
 	board.~Board();
 	gl.~GameLogic();
-	for (int i = 0; i < (int)characters.size(); i++) {
-		characters.at(i).~Character();
-	}
-	for (int i = 0; i < (int)markers.size(); i++) {
-		markers.at(i).~Marker();
-	}
+	printf("characters");
+	characters.clear();
+	printf("marked");
+	marked.clear();
+	markers.clear();
 
 }
 
 //Sort character for drawing
 //TODO: check if in use
 void Game::sortCharacters()
-{	
+{
 	//Character temp("");
 	for (int i = 0; i < (int)characters.size()-1; i++)
 	{
@@ -181,7 +179,7 @@ void Game::sortCharacters()
 		for (int j = 0; j < (int)characters.size() - i - 1; j++)
 		{
 			if (characters[j].compare(characters[j + 1])) {
-				std::swap(characters.at(j), characters.at(j+1));				
+				std::swap(characters.at(j), characters.at(j+1));
 			}
 		}
 	}

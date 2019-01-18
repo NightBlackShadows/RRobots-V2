@@ -187,7 +187,7 @@ bool init() {
 		if (mh.initMusic()) {
 			if (mh.loadMusic()) {
 				if (!options.getMute()) {
-					mh.changeVolume(50);
+					mh.changeVolume(options.getMusicVolume());
 				}
 				else {
 					mh.changeVolume(0);
@@ -200,7 +200,7 @@ bool init() {
 		}
 		if (ah.initSounds()) {
 			if (ah.loadSounds()) {
-				//ah.changeVolume(50);
+				//ah.changeVolume(options.getSoundVolume());
 				//ah.playMusic();
 			}
 			else {

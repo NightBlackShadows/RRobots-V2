@@ -1,5 +1,9 @@
-
+RRobotsV2/CMakeFiles/*
 RRobotsV2/Debug/*
 RRobotsV2/Release/*
 RRobotsV2/.vs/*
 RRobotsV2/X64/*
+RRobotsV2/CMakeCache.txt
+RRobotsV2/cmake_install.cmake
+RRobotsV2/Makefile
+RRobotsV2/RRobotsV2

@@ -5,7 +5,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #endif
-#ifdef __APPLE__ 
+#ifdef __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
@@ -96,7 +96,7 @@ int main(int argc, char* args[]) {
 						mainMenu.draw(renderer);
 						if (current != State::MAIN) {
 							mainMenu.~MainMenu();
-							SDL_RenderClear(renderer);
+							wh.clearScreen();
 						}
 					}
 					else {
@@ -109,7 +109,7 @@ int main(int argc, char* args[]) {
 						optionsMenu.draw(renderer);
 						if (current != State::OPTIONS) {
 							optionsMenu.~OptionsMenu();
-							SDL_RenderClear(renderer);
+							wh.clearScreen();
 						}
 					}
 					else {
@@ -121,10 +121,8 @@ int main(int argc, char* args[]) {
 						current = game.runGame();
 						game.drawGame(renderer);
 						if (current != State::GAME) {
-							running = true;
-							current = State::MAIN;
 							game.~Game();
-							SDL_RenderClear(renderer);
+							wh.clearScreen();
 						}
 					}
 					else {
@@ -168,7 +166,7 @@ void draw() {
 	//game.drawGame(renderer);
 
 	SDL_RenderPresent(renderer);
-
+	wh.clearScreen();
 }
 
 
@@ -189,7 +187,7 @@ bool init() {
 		if (mh.initMusic()) {
 			if (mh.loadMusic()) {
 				if (!options.getMute()) {
-					mh.changeVolume(50);
+					mh.changeVolume(options.getMusicVolume());
 				}
 				else {
 					mh.changeVolume(0);
@@ -202,7 +200,7 @@ bool init() {
 		}
 		if (ah.initSounds()) {
 			if (ah.loadSounds()) {
-				//ah.changeVolume(50);
+				//ah.changeVolume(options.getSoundVolume());
 				//ah.playMusic();
 			}
 			else {
@@ -218,7 +216,6 @@ bool init() {
 		}
 		else
 		{
-			wh.initWindowHandler(gWindow,&options);
 			//Create renderer for window
 			renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
 			if (renderer == NULL)
@@ -231,6 +228,7 @@ bool init() {
 				//Initialize renderer color
 				SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 
+				wh.initWindowHandler(gWindow,&options,renderer);
 				//Initialize PNG loading
 				int imgFlags = IMG_INIT_PNG;
 				if (!(IMG_Init(imgFlags) & imgFlags))
@@ -255,11 +253,17 @@ void close() {
 	//Free loaded image
 	//SDL_DestroyTexture(gTexture);
 	//gTexture = NULL;
+	if(options.getFullscreen() == true){
+		SDL_SetWindowFullscreen(gWindow, false);
+	}
+
 	options.saveOptions();
 	options.~Options();
 	mh.~MusicHandler();
+	ah.~AudioHandler();
 
-	//Destroy window    
+
+	//Destroy window
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;

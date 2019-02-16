@@ -90,5 +90,5 @@ void Gametext::makeTexture()
 Gametext::~Gametext()
 {
 	text.clear();
-	
+
 }

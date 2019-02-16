@@ -7,10 +7,11 @@ WindowHandler::WindowHandler()
 }
 
 //Initialize display window
-bool WindowHandler::initWindowHandler(SDL_Window * window, Options* options)
+bool WindowHandler::initWindowHandler(SDL_Window * window, Options* options, SDL_Renderer* renderer)
 {
 	this->window = window;
 	this->options = options;
+	this->renderer = renderer;
 	return false;
 }
 
@@ -53,7 +54,9 @@ void WindowHandler::getWindowSize(int * width, int * height)
 	SDL_GetWindowSize(window, width, height);
 }
 
-
+void WindowHandler::clearScreen(){
+	SDL_RenderClear(renderer);
+}
 
 WindowHandler::~WindowHandler()
 {

@@ -29,7 +29,7 @@ bool OptionsMenu::init(SDL_Renderer* renderer, Options* options, WindowHandler* 
 	//	for (Gametext g: optionMenues)
 	for (unsigned int i = 0; i < optionMenues.size(); i++) {
 		optionMenues[i].init("fonts/LCD_Solid.ttf",renderer);
-		optionMenues[i].setRandTextColor();
+		optionMenues[i].setTextColor();
 		optionMenues[i].setTextRect( current.w *0.04, (i + 1) * 29,
 		optionMenues[i].getText().length() * 24, 27);
 		optionMenues[i].makeTexture();
@@ -50,7 +50,7 @@ bool OptionsMenu::init(SDL_Renderer* renderer, Options* options, WindowHandler* 
 		for (unsigned int i = 0; i < changeMenuesValues.size(); i++) {
 			int textLenthDiv2 = (changeMenuesValues[i].getText().length() * 24)/2;
 			changeMenuesValues[i].init("fonts/LCD_Solid.ttf",renderer);
-			changeMenuesValues[i].setRandTextColor();
+			changeMenuesValues[i].setTextColor();
 			changeMenuesValues[i].setTextRect(568-textLenthDiv2, (i + 1) * 29,
 			changeMenuesValues[i].getText().length() * 24, 27);
 			changeMenuesValues[i].makeTexture();
@@ -62,7 +62,7 @@ bool OptionsMenu::init(SDL_Renderer* renderer, Options* options, WindowHandler* 
 		}
 		for(int i = 0; i < arrowMenues.size(); i++){
 			arrowMenues[i].init("fonts/LCD_Solid.ttf",renderer);
-			arrowMenues[i].setRandTextColor();
+			arrowMenues[i].setTextColor();
 			if(i%2 == 0)
 			arrowMenues[i].setTextRect(376, (i/2 + 1)* 29, 24, 27);
 			else
@@ -82,14 +82,11 @@ bool OptionsMenu::init(SDL_Renderer* renderer, Options* options, WindowHandler* 
 		SDL_DisplayMode mode;
 		Uint32 f;
 
-		SDL_Log("SDL_GetNumVideoDisplays(): %i", SDL_GetNumVideoDisplays());
-
 		display_mode_count = SDL_GetNumDisplayModes(display_in_use);
 		if (display_mode_count < 1) {
 			SDL_Log("SDL_GetNumDisplayModes failed: %s", SDL_GetError());
 			//return 1;
 		}
-		SDL_Log("SDL_GetNumDisplayModes: %i", display_mode_count);
 
 		for (i = 0; i < display_mode_count; ++i) {
 			if (SDL_GetDisplayMode(display_in_use, i, &mode) != 0) {
@@ -105,10 +102,6 @@ bool OptionsMenu::init(SDL_Renderer* renderer, Options* options, WindowHandler* 
 			if(current.w == displayModes[i].w && current.h == displayModes[i].h)
 			currentModePlace = i;
 		}
-		/*
-		for(SDL_DisplayMode mode : displayModes){
-		printf("%ix%i@%i\n",mode.w,mode.h,mode.refresh_rate );
-	}*/
 }
 
 bool OptionsMenu::isInitialized()

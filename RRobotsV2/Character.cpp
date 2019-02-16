@@ -165,11 +165,5 @@ void Character::resetSprite()
 //Destructor
 Character::~Character()
 {
-	/*if (tex != NULL)
-	{
-		SDL_DestroyTexture(tex);
-	}*/
-	//tex = NULL;
-	//filepath = "";
-	//sprites.clear();
+
 }

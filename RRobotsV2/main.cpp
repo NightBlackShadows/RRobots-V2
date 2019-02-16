@@ -71,8 +71,6 @@ int main(int argc, char* args[]) {
 	}
 	else
 	{
-		//wh.initWindowHandler(gWindow,&options);
-		if (game.initGame(renderer, options)) {
 
 			//Start counting frames per second
 			int countedFrames = 0;
@@ -95,7 +93,7 @@ int main(int argc, char* args[]) {
 						current = mainMenu.logic();
 						mainMenu.draw(renderer);
 						if (current != State::MAIN) {
-							mainMenu.~MainMenu();
+							//mainMenu.~MainMenu();
 							wh.clearScreen();
 						}
 					}
@@ -108,7 +106,7 @@ int main(int argc, char* args[]) {
 						current = optionsMenu.logic();
 						optionsMenu.draw(renderer);
 						if (current != State::OPTIONS) {
-							optionsMenu.~OptionsMenu();
+							//optionsMenu.~OptionsMenu();
 							wh.clearScreen();
 						}
 					}
@@ -121,7 +119,7 @@ int main(int argc, char* args[]) {
 						current = game.runGame();
 						game.drawGame(renderer);
 						if (current != State::GAME) {
-							game.~Game();
+							//game.~Game();
 							wh.clearScreen();
 						}
 					}
@@ -146,10 +144,7 @@ int main(int argc, char* args[]) {
 				}
 			}
 		}
-		else {
-			printf("could not init game\n");
-		}
-	}
+	
 
 	//Free resources and close SDL
 	close();
@@ -204,7 +199,7 @@ bool init() {
 				//ah.playMusic();
 			}
 			else {
-				printf("Some or all music could not be loaded\n");
+				printf("Some or all sounds could not be loaded\n");
 			}
 		}
 		//Create window
@@ -266,10 +261,10 @@ void close() {
 	//Destroy window
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(gWindow);
-	gWindow = NULL;
-	renderer = NULL;
+	//gWindow = NULL;
+	//renderer = NULL;
 
 	//Quit SDL subsystems
-	IMG_Quit();
+	//IMG_Quit();
 	SDL_Quit();
 }

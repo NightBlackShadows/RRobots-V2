@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <algorithm>
+#include <stdio.h>
 
 Game::Game()
 {
@@ -158,13 +159,6 @@ void Game::drawGame(SDL_Renderer* renderer)
 //Destructor, clean memory
 Game::~Game()
 {
-	board.~Board();
-	gl.~GameLogic();
-	printf("characters");
-	characters.clear();
-	printf("marked");
-	marked.clear();
-	markers.clear();
 
 }
 

@@ -1,5 +1,5 @@
 #include "MainMenu.h"
-
+#include <stdio.h>
 
 
 MainMenu::MainMenu()
@@ -21,8 +21,9 @@ bool MainMenu::init(SDL_Renderer *renderer, Options* options)
 //	for (Gametext g: menues) 
 	for(unsigned int i = 0; i < menues.size();i++){
 		menues[i].init("fonts/LCD_Solid.ttf",renderer);
-		menues[i].setRandTextColor();
-		menues[i].setTextRect((i + 1) * 29, (i + 1) * 29,
+		menues[i].setTextColor();
+		menues[i].setTextRect((options->getWidth()/2 - (menues[i].getText().length() * 24/2)),
+			options->getHeight() * 0.25 + (i + 1) * 29,
 			menues[i].getText().length() * 24, 27);
 		menues[i].makeTexture();
 	}
@@ -88,9 +89,5 @@ void MainMenu::draw(SDL_Renderer* renderer)
 
 MainMenu::~MainMenu()
 {
-	for (Gametext t : menues) {
-		t.~Gametext();
-	}
-	menues.clear();
 
 }

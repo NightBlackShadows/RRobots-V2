@@ -34,7 +34,7 @@ bool AudioHandler::initSounds()
 bool AudioHandler::loadSounds()
 {
 
-	return false;
+	return true;
 }
 
 //Play a specifik sound

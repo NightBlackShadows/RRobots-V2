@@ -7,3 +7,7 @@ RRobotsV2/CMakeCache.txt
 RRobotsV2/cmake_install.cmake
 RRobotsV2/Makefile
 RRobotsV2/RRobotsV2
+RRobotsV2/.idea/*
+RRobotsV2/.vscode/*
+RRobotsV2/RRobotsV2.cbp
+RRobotsV2/RRobotsV2.aps

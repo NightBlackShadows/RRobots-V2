@@ -324,9 +324,9 @@ void GameLogic::printBoards()
 
 GameLogic::~GameLogic()
 {
-	gameBoard.clear();
-	entityBoard.clear();
-	orgEntityBoard.clear();
+	//gameBoard.clear();
+	//entityBoard.clear();
+	//orgEntityBoard.clear();
 }
 
 //Back upp entity board, to reset board if player regrets or wants to try again

@@ -119,8 +119,8 @@ Board::~Board()
 	GameBoard_ButtomRight = NULL;
 	SDL_DestroyTexture(GameBoard_ButtomLeft);
 	GameBoard_ButtomLeft = NULL;
-	gameBoard.clear();
-	entityBoard.clear();
+	//gameBoard.clear();
+	//entityBoard.clear();
 }
 
 //Get the current gameboard

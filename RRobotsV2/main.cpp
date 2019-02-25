@@ -152,7 +152,8 @@ int main(int argc, char* args[]) {
   return 0;
 }
 
-void draw() {
+void draw()
+{
 
   //Vill man testa att skriva ut något på bilden så gör det här!
 
@@ -165,7 +166,8 @@ void draw() {
 }
 
 
-bool init() {
+bool init()
+{
   //Initialization flag
   bool success = true;
 
@@ -176,30 +178,38 @@ bool init() {
 
     {
       
-      if (mh.initMusic()) {
-        if (mh.loadMusic()) {
-          if (!options.getMute()) {
-            mh.changeVolume(options.getMusicVolume());
-          }
-          else {
-            mh.changeVolume(0);
-          }
-          mh.playMusic();
+      if (mh.initMusic())
+        {
+          if (mh.loadMusic())
+            {
+              if (!options.getMute())
+                {
+                  mh.changeVolume(options.getMusicVolume());
+                }
+              else
+                {
+                  mh.changeVolume(0);
+                }
+              mh.playMusic();
+            }
+          else
+            {
+              printf("Some or all music could not be loaded\n");
+            }
         }
-        else {
-          printf("Some or all music could not be loaded\n");
-        }
-      }
       
-      if (ah.initSounds()) {
-        if (ah.loadSounds()) {
-          //ah.changeVolume(options.getSoundVolume());
-          //ah.playMusic();
+      if (ah.initSounds())
+        {
+          if (ah.loadSounds())
+            {
+              //ah.changeVolume(options.getSoundVolume());
+              //ah.playMusic();
+            }
+          else
+            {
+              printf("Some or all sounds could not be loaded\n");
+            }
         }
-        else {
-          printf("Some or all sounds could not be loaded\n");
-        }
-      }
       
       //Create window
       gWindow = SDL_CreateWindow("RRobot 2.0", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, options.getWidth(), options.getHeight(), SDL_WINDOW_SHOWN);
@@ -252,13 +262,15 @@ bool init() {
   return success;
 }
 
-void close() {
+void close()
+{
   //Free loaded image
   //SDL_DestroyTexture(gTexture);
   //gTexture = NULL;
-  if(options.getFullscreen() == true){
-    SDL_SetWindowFullscreen(gWindow, false);
-  }
+  if(options.getFullscreen() == true)
+    {
+      SDL_SetWindowFullscreen(gWindow, false);
+    }
 
   options.saveOptions();
   options.~Options();

@@ -228,7 +228,9 @@ bool init()
         }
       
       //Create window
-      gWindow = SDL_CreateWindow("RRobot 2.0", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, options.getWidth(), options.getHeight(), SDL_WINDOW_SHOWN);
+      gWindow = SDL_CreateWindow("RRobot 2.0", SDL_WINDOWPOS_UNDEFINED,
+                                 SDL_WINDOWPOS_UNDEFINED, options.getWidth(),
+                                 options.getHeight(), SDL_WINDOW_SHOWN);
       if (gWindow != NULL)
         {
           //Create renderer for window

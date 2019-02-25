@@ -42,7 +42,8 @@ bool FileHandler::writeToFile(std::string filename, std::string text)
   return fileStream;
   }
   else throw ("Unable to open file:" + filename);
-  }*/
+  }
+*/
 
 
 

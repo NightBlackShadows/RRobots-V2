@@ -233,7 +233,7 @@ bool init() {
           else
             {
               printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-                            success = false;
+              success = false;
             }
         }
       else

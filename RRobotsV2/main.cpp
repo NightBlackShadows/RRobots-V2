@@ -5,11 +5,13 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #endif
+
 #ifdef __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
 #endif
+
 #ifdef __linux__
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -24,7 +26,6 @@
 #include "Timer.h"
 #include "State.h"
 
-
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
@@ -36,13 +37,13 @@ SDL_Surface* gHelloWorld = NULL;
 
 SDL_Renderer* renderer = NULL;
 
-MainMenu mainMenu;
-OptionsMenu optionsMenu;
-Game game;
-Options options;
+MainMenu      mainMenu;
+OptionsMenu   optionsMenu;
+Game          game;
+Options       options;
 WindowHandler wh;
-MusicHandler mh;
-AudioHandler ah;
+MusicHandler  mh;
+AudioHandler  ah;
 SDL_DisplayMode *currentDisp;
 bool init();
 void draw();
@@ -66,16 +67,13 @@ int main(int argc, char* args[])
 
 
 
-  if (!init())
-    {
-      printf("Failed to initialize!\n");
-    }
-  else
+  if (init())
     {
 
       //Start counting frames per second
-      int countedFrames = 0;
+      int countedFrames          = 0;
       int SCREEN_TICKS_PER_FRAME = 1000 / FPS_LOCK;
+      
       fpsTimer.start();
       while (running)
         {
@@ -107,6 +105,7 @@ int main(int argc, char* args[])
                   mainMenu.init(renderer, &options);
                 }
               break;
+              
             case State::OPTIONS:
               if (optionsMenu.isInitialized())
                 {
@@ -123,6 +122,7 @@ int main(int argc, char* args[])
                   optionsMenu.init(renderer, &options, &wh, &ah, &mh);
                 }
               break;
+              
             case State::GAME:
               if (game.isInitialized())
                 {
@@ -139,6 +139,7 @@ int main(int argc, char* args[])
                   game.initGame(renderer, options);
                 }
               break;
+              
             case State::QUIT:
               running = false;
             default:
@@ -156,8 +157,10 @@ int main(int argc, char* args[])
             }
         }
     }
-	
-
+  else
+    {
+      printf("Failed to initialize!\n");
+    }
   //Free resources and close SDL
   close();
 

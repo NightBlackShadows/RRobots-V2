@@ -53,7 +53,8 @@ State current;
 
 int FPS_LOCK = 60;
 
-int main(int argc, char* args[]) {
+int main(int argc, char* args[])
+{
   //Start up SDL and create window
 
   bool running = true;
@@ -76,73 +77,84 @@ int main(int argc, char* args[]) {
       int countedFrames = 0;
       int SCREEN_TICKS_PER_FRAME = 1000 / FPS_LOCK;
       fpsTimer.start();
-      while (running) {
+      while (running)
+        {
 
-        capTimer.start();
+          capTimer.start();
 
-        //Calculate and correct fps
-        float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
-        if (avgFPS > 2000000)
-          {
-            avgFPS = 0;
-          }
+          //Calculate and correct fps
+          float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
+          if (avgFPS > 2000000)
+            {
+              avgFPS = 0;
+            }
 
-        switch (current) {
-        case State::MAIN:
-          if (mainMenu.isInitialized()) {
-            current = mainMenu.logic();
-            mainMenu.draw(renderer);
-            if (current != State::MAIN) {
-              //mainMenu.~MainMenu();
-              wh.clearScreen();
+          switch (current)
+            {
+            case State::MAIN:
+              if (mainMenu.isInitialized())
+                {
+                  current = mainMenu.logic();
+                  mainMenu.draw(renderer);
+                  if (current != State::MAIN)
+                    {
+                      //mainMenu.~MainMenu();
+                      wh.clearScreen();
+                    }
+                }
+              else
+                {
+                  mainMenu.init(renderer, &options);
+                }
+              break;
+            case State::OPTIONS:
+              if (optionsMenu.isInitialized())
+                {
+                  current = optionsMenu.logic();
+                  optionsMenu.draw(renderer);
+                  if (current != State::OPTIONS)
+                    {
+                      //optionsMenu.~OptionsMenu();
+                      wh.clearScreen();
+                    }
+                }
+              else
+                {
+                  optionsMenu.init(renderer, &options, &wh, &ah, &mh);
+                }
+              break;
+            case State::GAME:
+              if (game.isInitialized())
+                {
+                  current = game.runGame();
+                  game.drawGame(renderer);
+                  if (current != State::GAME)
+                    {
+                      //game.~Game();
+                      wh.clearScreen();
+                    }
+                }
+              else
+                {
+                  game.initGame(renderer, options);
+                }
+              break;
+            case State::QUIT:
+              running = false;
+            default:
+              break;
             }
-          }
-          else {
-            mainMenu.init(renderer, &options);
-          }
-          break;
-        case State::OPTIONS:
-          if (optionsMenu.isInitialized()) {
-            current = optionsMenu.logic();
-            optionsMenu.draw(renderer);
-            if (current != State::OPTIONS) {
-              //optionsMenu.~OptionsMenu();
-              wh.clearScreen();
+
+          draw();
+          ++countedFrames;
+          //If frame finished early
+          int frameTicks = capTimer.getTicks();
+          if (frameTicks < SCREEN_TICKS_PER_FRAME)
+            {
+              //Wait remaining time
+              SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
             }
-          }
-          else {
-            optionsMenu.init(renderer, &options, &wh, &ah, &mh);
-          }
-          break;
-        case State::GAME:
-          if (game.isInitialized()) {
-            current = game.runGame();
-            game.drawGame(renderer);
-            if (current != State::GAME) {
-              //game.~Game();
-              wh.clearScreen();
-            }
-          }
-          else {
-            game.initGame(renderer, options);
-          }
-          break;
-        case State::QUIT:
-          running = false;
-        default:
-          break;
         }
-
-        draw();
-        ++countedFrames;
-        //If frame finished early
-        int frameTicks = capTimer.getTicks();
-        if (frameTicks < SCREEN_TICKS_PER_FRAME)
-          {
-            //Wait remaining time
-            SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
-          }
-      }
     }
 	
 

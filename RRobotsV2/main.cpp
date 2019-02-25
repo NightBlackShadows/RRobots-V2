@@ -249,30 +249,35 @@ bool init()
                 }
               else
                 {
-                  printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+                  printf("SDL_image could not initialize! SDL_image Error: %s\n",
+                         IMG_GetError());
                   success = false;
                 }
               
               if (TTF_Init())
                 {
-                  printf("SDL_ttf could not initialize! ttf error: %s\n", TTF_GetError());
+                  printf("SDL_ttf could not initialize! ttf error: %s\n",
+                         TTF_GetError());
                 }
             }
           else
             {
-              printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+              printf("Renderer could not be created! SDL Error: %s\n",
+                     SDL_GetError());
               success = false;
             }
         }
       else
         {
-          printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+          printf("Window could not be created! SDL_Error: %s\n",
+                 SDL_GetError());
           success = false;
         }
     }
   else
     {
-      printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+      printf("SDL could not initialize! SDL_Error: %s\n",
+             SDL_GetError());
       success = false;
     }
   

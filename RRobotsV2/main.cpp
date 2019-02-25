@@ -17,6 +17,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #endif
+
 #include "Game.h"
 #include "Options.h"
 #include "MusicHandler.h"

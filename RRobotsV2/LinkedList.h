@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iterator>
+#include <exception>
 #include <utility>
 #include "WayType.h"
 #include "Node.h"

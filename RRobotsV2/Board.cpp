@@ -209,34 +209,27 @@ bool Board::loadImages(SDL_Renderer* renderer)
 	if (GameBoard_brick == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
+	if (GameBoard_empty == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
+	if (GameBoard_up == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
+	if (GameBoard_left == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
+	if (GameBoard_TopRight == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
+	if (GameBoard_TopLeft == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
+	if (GameBoard_ButtomRight == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
+	if (GameBoard_ButtomLeft == NULL) {
 		return false;
 	}
-	if (GameBoard_brick == NULL) {
-		return false;
-	}
-	if (GameBoard_brick == NULL) {
-		return false;
-	}
-
 
 
 	return true;

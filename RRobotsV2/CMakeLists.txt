@@ -4,7 +4,7 @@ project(RRobotsV2)
 include_directories(include)
 file(GLOB SOURCES "*.cpp")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/modules")
-add_executable(RRobotsV2 ${SOURCES})
+add_executable(RRobotsV2 ${SOURCES} Node.cpp Node.h)
 set(CMAKE_BUILD_TYPE Debug)
 
 find_package(SDL2 REQUIRED)

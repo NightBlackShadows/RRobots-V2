@@ -183,7 +183,7 @@ bool GameLogic::markerCollision(Character &character, Marker &marker)
 	}
 	return false;
 }
-
+//TODO: move this to CollisionDetection, think this is used in Game.cpp
 //Detect collision of characters and walls
 SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayType way)
 {

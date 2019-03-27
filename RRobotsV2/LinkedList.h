@@ -1,76 +1,68 @@
 #pragma once
 
 #include <iterator>
+#include <utility>
+#include "WayType.h"
+#include "Node.h"
 
-template<class T>
+template <typename T>
 class LinkedList
 {
 public:
-    class Node{
-        T data;
-        Node* next;
-        Node(T value, Node *node){
-            data = value;
-            next -> node;
-        };
-    };
-    LinkedList<T>(){
-        size = 0;
-        root = tail = LinkedList<T>::Node::Node(NULL,NULL);
-    };
+
+    LinkedList();
+
     T getIndex(int index){
         if(index < 0 || index > size)
             throw std::invalid_argument("Index out of range");
         if(index == 0)
-            return root.data;
+            return root.move;
         else if(index == size-1)
-            return tail.data;
+            return tail.move;
         else{
-            Node node = findNode(index);
-            return node.data;
+            Node<T> node = findNode(index);
+            return node.move;
         }
-
-    }
-    bool add(T value){
-        if(value == NULL)
-            return false;
-        if(size == 0){
-            root = new Node(value,NULL);
+    };
+    bool add(int characterColor, T data){
+        if(size == 0) {
+            root = Node<T>(data, NULL);
             tail = root;
             size++;
             return true;
-        }else{
-            Node node = findNode(size-1);
-            node.next = Node(value,NULL);
+        }
+        else{
+            Node<T> node = findNode(size-1);
+            node.next = Node<T>(data,NULL);
             tail = node.next;
             size++;
             return true;
         }
-
+        return false;
     };
     T remove(int index){
         if(index < 0 || index > size)
             throw std::invalid_argument("Index out of range");
-        Node node = findNode(index);
-        return node.data;
+        Node<T> node = findNode(index);
+        T data = node.data;
+        if(index == 0){
+            root = node.next;
+        }else{
+            node.next = node.next->next;
+        }
+
+
+        return data;
     };
+
+    int Size(){ return  size;};
+
     ~LinkedList<T>(){
+        tail = root = NULL;
         size = 0;
-        root = NULL;
-        tail = NULL;
     };
 private:
     int size;
-    Node root, tail;
-    Node findNode(int index){
-        if(index < 0 || index > size)
-            throw std::invalid_argument( "received invalid value" );
-        if(root == NULL)
-            throw std::invalid_argument("root node is null");
-        Node node = root;
-        for(int i = 0; i < index && node != NULL;i++){
-            node = node.next;
-        }
-        return node;
-    }
+    Node<T>* root, *tail;
+    Node<T> findNode(int index);
 };

@@ -14,10 +14,12 @@ public:
 	bool initGame(SDL_Renderer* renderer,Options options);
 	bool isInitialized();
 	State runGame();
-
+    bool unload();
 	void drawGame(SDL_Renderer* renderer);
 	~Game();
 private:
+    int time;
+    SDL_Rect scoreboard;
 	SDL_Event e;
 	SDL_Rect dest;
 	void sortCharacters();

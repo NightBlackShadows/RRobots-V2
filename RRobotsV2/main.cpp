@@ -130,7 +130,7 @@ int main(int argc, char* args[])
                   game.drawGame(renderer);
                   if (current != State::GAME)
                     {
-                      //game.~Game();
+                      game.unload();
                       wh.clearScreen();
                     }
                 }

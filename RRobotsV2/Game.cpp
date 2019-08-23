@@ -11,6 +11,7 @@ bool Game::initGame(SDL_Renderer* renderer, Options options)
 {
 	this->options = options;
 	board.initBoard();
+	time = 20;
 	if (board.loadImages(renderer)) {
 		gl.setEntityBoard(board.getEntityBoard());
 		gl.setGameBoard(board.getGameBoard());
@@ -90,6 +91,9 @@ State Game::runGame()
 				else if (e.key.keysym.scancode == SDL_SCANCODE_UP || e.key.keysym.scancode == SDL_SCANCODE_W) {
 					way = WayType::UP;
 				}
+				else if (e.key.keysym.scancode == SDL_SCANCODE_R) {
+				    //entBoard =
+				}
 				else if (e.key.keysym.scancode == SDL_SCANCODE_TAB) {
 					markedCharacter = gl.changeMarked(characters);
 				}
@@ -152,8 +156,20 @@ void Game::drawGame(SDL_Renderer* renderer)
 			}
 		}
 	}
+    SDL_SetRenderDrawColor(renderer, 211,211,211,0);
+    scoreboard.x = options.getWidth()*0.72;
+	scoreboard.y = 0;
+	scoreboard.w = options.getWidth()*0.28;
+	scoreboard.h = options.getHeight()*0.5;
+    SDL_RenderFillRect(renderer, &scoreboard);
+    SDL_SetRenderDrawColor(renderer, 0,0,0,0);
 
-	SDL_RenderCopyEx(renderer, characters.at(markedCharacter).getTexture(), characters.at(markedCharacter).getSpriteRect(way), characters.at(markedCharacter).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer, characters.at(markedCharacter).getTexture(), characters.at(markedCharacter).getSpriteRect(way), characters.at(markedCharacter).getPositionRect(), 0, NULL, SDL_FLIP_NONE);
+}
+
+bool Game::unload() {
+    characters.clear();
+
 }
 
 //Destructor, clean memory

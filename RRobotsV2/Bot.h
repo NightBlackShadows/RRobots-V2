@@ -4,6 +4,7 @@
 #include "LinkedList.h"
 #include "WayType.h"
 #include "Marker.h"
+#include "CollisionDetection.h"
 
 class Bot{
     public:
@@ -34,6 +35,6 @@ class Bot{
     std::vector<std::vector<int>> gameBoard;
     std::vector<WayType> moves;
     std::vector<WayType> bestMoves;
-
+    CollisionDetection cd;
 };
 

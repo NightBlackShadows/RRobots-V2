@@ -31,7 +31,7 @@ void GameLogic::randomizeCharacterPos(std::vector<Character>* characters)
 		entityBoard[y][x] = chars+2;
 		characters->at(chars).setMapX(x);
 		characters->at(chars).setMapY(y);
-		characters->at(chars).setNewPosition(32 * x, 32 * y - 32);
+		characters->at(chars).setNewPosition(32 * x, 32 * y - 24);
 	}
 }
 
@@ -176,10 +176,9 @@ bool GameLogic::moveCharacter(Character &character,SDL_Rect dest)
 bool GameLogic::markerCollision(Character &character, Marker &marker)
 {
 	if (character.getMapXPos() == marker.getMapXPos() &&
-		character.getMapYPos() == marker.getMapYPos()) {
-		if (character.getColor() == marker.getColor()) {
+		character.getMapYPos() == marker.getMapYPos() &&
+		character.getColor() == marker.getColor()) {
 			return true;
-		}
 	}
 	return false;
 }
@@ -205,7 +204,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 					character.setMapX(x);
 				}
 				newPos.x = x * 32;
-				newPos.y = y * 32 - 32;
+				newPos.y = y * 32 - 24;
 				return newPos;
 			}
 			else {
@@ -218,7 +217,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 			}
 		}
 		newPos.x = x * 32;
-		newPos.y = y * 32 - 32;
+		newPos.y = y * 32 - 24;
 		return newPos;
 	case WayType::RIGHT:
 		while (x < 16) {
@@ -233,7 +232,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 					character.setMapX(x);
 				}
 				newPos.x = x * 32;
-				newPos.y = y * 32 - 32;
+				newPos.y = y * 32 - 24;
 				return newPos;
 			}
 			else {
@@ -261,7 +260,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 					character.setMapY(y);
 				}
 				newPos.x = x * 32;
-				newPos.y = y * 32 - 32;
+				newPos.y = y * 32 - 24;
 				return newPos;
 			}
 			else {
@@ -274,7 +273,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 			}
 		}
 		newPos.x = x * 32;
-		newPos.y = y * 32 - 32;
+		newPos.y = y * 32 - 24;
 		return newPos;
 	case WayType::DOWN:
 		while (y < 16) {
@@ -289,7 +288,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 					character.setMapY(y);
 				}
 				newPos.x = x * 32;
-				newPos.y = y * 32 - 32;
+				newPos.y = y * 32 - 24;
 				return newPos;
 			}
 			else {
@@ -302,7 +301,7 @@ SDL_Rect GameLogic::detectCollision(Character &character, SDL_Rect marker, WayTy
 			}
 		}
 		newPos.x = x * 32;
-		newPos.y = y * 32 - 32;
+		newPos.y = y * 32 - 24;
 		return newPos;
 	default:
 		return SDL_Rect();
@@ -326,6 +325,7 @@ GameLogic::~GameLogic()
 {
 	//gameBoard.clear();
 	//entityBoard.clear();
+
 	//orgEntityBoard.clear();
 }
 

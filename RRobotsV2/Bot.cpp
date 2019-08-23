@@ -5,6 +5,7 @@
 Bot::Bot(int difficulty){
     moves = std::vector<WayType>();
     bestMoves = std::vector<WayType>();
+    cd = CollisionDetection();
 }
 
 int Bot::FindSolution(Marker marker, std::vector<std::vector<int>> gameBoard, std::vector<std::vector<int>> entityBoard) {
@@ -49,6 +50,12 @@ int Bot::FindSolutionHard(ColorType character,Marker marker, std::vector<std::ve
     if(marker.getColor() == character && marker.getMapXPos() == posChar->x && marker.getMapYPos() == posChar->y)
         return moves.size();
     int up, down, left, right;
+
+
+    //TODO: check all movements for allt possible characters
+    if(cd.PossibleMovement(posChar->x,posChar->y,WayType::UP,gameBoard,entityBoard)){
+
+    }
 
 
 
